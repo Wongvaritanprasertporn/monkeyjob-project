@@ -63,14 +63,16 @@ export class RegisterComponent implements OnInit {
   register() {
     this.loading = true;
     this.api.post_('auth/register/users', this.form.value)
-      .subscribe((response: any) => {
+      .subscribe({next : (response) => {
         this.loading = false;
         this.auth.setLogin(response);
         this.navigate();
-      }, error => {
+      }, error : (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }, complete: () => {
+        console.log("sucess");
+    }});
   }
 
   google(data: any) {
@@ -79,15 +81,15 @@ export class RegisterComponent implements OnInit {
       name: data.name,
       email: data.email
     })
-      .subscribe((response: any) => {
+      .subscribe({next : (response) => {
         this.loading = false;
         this.auth.setLogin(response);
         this.navigate();
-      }, error => {
+      }, error : (e) => {
         this.loading = false;
         // this.authService.signOut();
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   signInWithGoogle(): void {
