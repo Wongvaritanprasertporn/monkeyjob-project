@@ -1,0 +1,9 @@
+.card--button {
+    float: right;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.d4SecBox {
+    cursor : pointer;
+}

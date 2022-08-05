@@ -1,0 +1,151 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+<div class="dashboardMid">
+    <div class="dmLeftSide">
+        <div class="candidateProfileSidebar">
+            <div class="cpButton">
+                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> Back To Jobs</a>
+            </div>
+        </div>
+    </div>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead mb-0">
+                <div class="diTitle">
+                    {{ job.title }}
+                </div>
+                <div class="daTitleRight" *ngIf="auth.user.user_type == 1">
+                    <div>
+                        <a routerLink="/jobs/messages/{{job.user_id}}" class="swButton lightBtn">Message</a>
+                    </div>
+                </div>
+            </div>
+            <div class="diTitleSubDA">
+                <a routerLink="/company/{{job.user_id}}">
+                    <!-- Riverside Recycling Ltd. <span>(Manufacturing)</span> -->
+                </a>
+            </div>
+            <div class="jdaFeatures">
+                <div class="raDataBtm">
+                    <span><i class="fas fa-user"></i> Age {{ job.minimum_age }} - {{ job.maximum_age }} Years</span>
+                    <!-- <span><i class="fas fa-money-bill-wave"></i> $19 an hour</span> -->
+                    <span><i class="fas fa-map-marker-alt"></i> {{ job.address }}, {{ job.zip_code }}</span>
+                </div>
+            </div>
+            <div class="diTitle">
+                Job Description
+            </div>
+            <div class="daJobDiscription">
+                <br />
+                <p>Job Industry: {{job.industry}}</p>
+                <br />
+                <p>Starting Salary: {{currency}} {{job.starting_salary}}</p>
+<br />
+                <p>Job Type: {{job.type}}</p>
+                <br>
+                <!-- <p>Language: English</p>
+                <p>Minimum Education: None</p> -->
+                <p>Positions Available: {{job.positions}}</p>
+                <br>
+                <p>Priority: {{job.priority}}</p>
+                <br>
+                <!-- <p>NOC Group: Landscaping and Grounds Maintenance Labourers (8612)</p>
+                <p>NOC Job Title: Worker, Landscape</p> -->
+                <p>Posted: {{ job.createdAt  | date:'fullDate' }}</p>
+                <p>Last Updated: {{ job.updatedAt  | date:'fullDate' }}</p>
+                <br>
+                <strong>Location</strong>
+                <p>{{job.address}} {{ job.zip_code }}</p>
+                <br>
+                <strong>Description</strong>
+                <p>
+                    {{ job.description }}
+                </p>
+                <!-- <p>Expiring: Apr 30, 2022</p> -->
+            </div>
+            <div class="daApplyThisJob mt-5" *ngIf="auth.user.user_type == 1">
+                <button href="javascript:;" (click)="applyJob()" [disabled]="loading" class="swButton darkBtn"
+                    style="margin-right: 15px;">
+                    <span *ngIf="loading">Please wait..</span>
+                    <span *ngIf="!loading">Apply This Job</span>
+                </button>
+                <!-- <a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="swButton lightFlotBtn">
+                    Report This Job
+                </a> -->
+            </div>
+        </div>
+        <div class="modal fade rtjModal" id="exampleModalToggle" aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content contactPage">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Report This Job</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="daApplyThisJobMB">
+                            <form>
+                                <div class="applyThisJobMBCheckBox mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            It is offensive, discriminatory
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            It seems like a fake job
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault3">
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            It is inaccurate
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault4">
+                                        <label class="form-check-label" for="flexRadioDefault4">
+                                            It is an advertisement
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault5">
+                                        <label class="form-check-label" for="flexRadioDefault5">
+                                            Other
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="applyThisJobMBTextarea mb-0">
+                                    <div class="">
+                                        <label for="atjAdditionalInformation" class="form-label">Additional
+                                            Information</label>
+                                        <textarea rows="3" class="form-control" id="atjAdditionalInformation"
+                                            placeholder="Enter here..."></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="swButton lightBtn">Submit</button>
+                        <div class="swInputHelpText mt-2">
+                            All Job Ads are subject to Job Portal's <a href="#">Terms of Service</a>. We allow users to
+                            flag postings that may be in violation of those terms. Job Ads may also be flagged by
+                            Job Portal. However, no moderation system is perfect, and flagging a posting does not ensure
+                            that it will be removed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

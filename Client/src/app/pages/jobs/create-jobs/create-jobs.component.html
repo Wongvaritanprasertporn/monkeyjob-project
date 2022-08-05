@@ -1,0 +1,217 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    {{ !job.id ? 'Post A New Job' : 'Edit Job' }}
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>{{ !job.id ? 'Post A Job' : 'Edit Job' }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboardWhiteBox">
+                <div class="dBoxTitle">
+                    <h1>General Information</h1>
+                </div>
+                <div class="formBox">
+                    <form [formGroup]="form" (submit)="submit()" class="contactPage">
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="pnjJobTitle" class="form-label">Job Title <span class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="title" name="title"
+                                    placeholder="Job Title">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.title.touched && form.controls.title.hasError('required')">
+                                        Title is required
+                                    </div>
+                                    <div *ngIf="form.controls.title.dirty && form.controls.title.errors">
+                                        Invalid Title
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="pnjJobIndustry" class="form-label">Job Industry <span class="error">*</span></label>
+                                <select type="text" class="form-control" formControlName="industry" name="industry">
+                                    <option value="">Select Industry</option>
+                                    <option *ngFor="let industry of industries">{{ industry.title }}</option>
+                                </select>
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.industry.touched && form.controls.industry.hasError('required')">
+                                        Job Industry is required
+                                    </div>
+                                    <div *ngIf="form.controls.industry.dirty && form.controls.industry.errors">
+                                        Job Industry title
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="pnjMinimumAge" class="form-label">Minimum Age <span class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="minimum_age" name="minimum_age"
+                                    placeholder="Minimum Age">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.minimum_age.touched && form.controls.minimum_age.hasError('required')">
+                                        Minimum Age is required
+                                    </div>
+                                    <div *ngIf="form.controls.minimum_age.dirty && form.controls.minimum_age.errors">
+                                        Invalid Minimum Age
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="pnjMinimumAge" class="form-label">Maximum Age <span class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="maximum_age" name="maximum_age"
+                                    placeholder="Maximum Age">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.maximum_age.touched && form.controls.maximum_age.hasError('required')">
+                                        Maximum Age is required
+                                    </div>
+                                    <div *ngIf="form.controls.maximum_age.dirty && form.controls.maximum_age.errors">
+                                        Invalid Maximum Age
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Starting Salary ({{ currency }}) <span class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="starting_salary"
+                                    name="starting_salary" placeholder="10000">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.starting_salary.touched && form.controls.starting_salary.hasError('required')">
+                                        Starting Salary is required
+                                    </div>
+                                    <div
+                                        *ngIf="form.controls.starting_salary.dirty && form.controls.starting_salary.errors">
+                                        Invalid Starting Salary
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Type <span class="error">*</span></label>
+                                <select class="form-control" formControlName="type" name="type">
+                                    <option value="">Select Type</option>
+                                    <option value="Contract">Contract</option>
+                                    <option value="Freelance">Freelance</option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Part Time">Part Time</option>
+                                </select>
+                                <div class="error">
+                                    <div *ngIf="form.controls.type.touched && form.controls.type.hasError('required')">
+                                        Type is required
+                                    </div>
+                                    <div *ngIf="form.controls.type.dirty && form.controls.type.errors">
+                                        Invalid Type
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Priority <span class="error">*</span></label>
+                                <select class="form-control" formControlName="priority" name="priority">
+                                    <option value="">Select Priority</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Urgent">Urgent</option>
+                                </select>
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.priority.touched && form.controls.priority.hasError('required')">
+                                        Priority is required
+                                    </div>
+                                    <div *ngIf="form.controls.priority.dirty && form.controls.priority.errors">
+                                        Invalid Priority
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Positions <span class="error">*</span></label>
+                                <select class="form-control" formControlName="positions" name="positions">
+                                    <option value="">Select Positions</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.positions.touched && form.controls.positions.hasError('required')">
+                                        Positions is required
+                                    </div>
+                                    <div *ngIf="form.controls.positions.dirty && form.controls.positions.errors">
+                                        Invalid Positions
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <label for="pnjZipCode" class="form-label">Address <span class="error">*</span></label>
+                                <textarea rows="5" class="form-control" formControlName="address" name="address"
+                                    placeholder="Address"></textarea>
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.address.touched && form.controls.address.hasError('required')">
+                                        Address is required
+                                    </div>
+                                    <div *ngIf="form.controls.address.dirty && form.controls.address.errors">
+                                        Invalid Address
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="pnjZipCode" class="form-label">Zip Code <span class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="zip_code" name="zip_code"
+                                    placeholder="Zip Code">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.zip_code.touched && form.controls.zip_code.hasError('required')">
+                                        Zip Code is required
+                                    </div>
+                                    <div *ngIf="form.controls.zip_code.dirty && form.controls.zip_code.errors">
+                                        Invalid Zip Code
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="pnjJobDescription" class="form-label">Job Description <span class="error">*</span></label>
+                                <textarea rows="5" class="form-control" formControlName="description" name="description"
+                                    placeholder="Write your job description"></textarea>
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.description.touched && form.controls.description.hasError('required')">
+                                        Job Description is required
+                                    </div>
+                                    <div *ngIf="form.controls.description.dirty && form.controls.description.errors">
+                                        Invalid Job Description
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row adminFromBtn">
+                                <div class="col-md-12 text-center">
+                                    <button [disabled]="loading" type="submit"
+                                        class="swButton darkBtn mt-3 loginButton">
+                                        <span *ngIf="!loading">Submit</span>
+                                        <span *ngIf="loading">Please wait..</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

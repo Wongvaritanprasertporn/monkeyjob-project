@@ -1,0 +1,236 @@
+<div id="loader" *ngIf="loading"></div>
+
+<div id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <div class="d-flex flex-column flex-root">
+        <div class="page d-flex flex-row flex-column-fluid">
+            <app-leftmenu></app-leftmenu>
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                <app-header></app-header>
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    <div class="toolbar" id="kt_toolbar">
+                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Job</h1>
+                                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                    <li class="breadcrumb-item text-dark">{{ job.title }}</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                                <div class="m-0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <div id="kt_content_container" class="container-xxl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-center flex-column py-5">
+                                        <a class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-3">
+                                            {{job.title}}
+                                        </a>
+                                        <div class="mb-9">
+                                            {{ job.description }}
+                                        </div>
+
+                                        <div class="d-flex flex-wrap flex-center">
+                                            <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
+                                                <div class="fs-4 fw-bolder text-gray-700">
+                                                    <span class="w-75px">0</span>
+                                                    <span class="svg-icon svg-icon-3 svg-icon-success">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black"></rect>
+                                                            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black"></path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="fw-bold text-muted">Applied</div>
+                                            </div>
+                                            <div class="border border-gray-300 border-dashed rounded py-3 px-3 mx-4 mb-3">
+                                                <div class="fs-4 fw-bolder text-gray-700">
+                                                    <span class="w-50px">0</span>
+                                                    <span class="svg-icon svg-icon-3 svg-icon-danger">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="black">
+                                                            </rect>
+                                                            <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="black"></path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="fw-bold text-muted">Interview</div>
+                                            </div>
+                                            <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
+                                                <div class="fs-4 fw-bolder text-gray-700">
+                                                    <span class="w-50px">0</span>
+                                                    <span class="svg-icon svg-icon-3 svg-icon-success">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black"></rect>
+                                                            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black"></path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="fw-bold text-muted">Selected</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-stack fs-4 py-3"
+                                    *ngIf="action == 1"
+                                    >
+                                        <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse" href="#kt_user_view_details" role="button" aria-expanded="false" aria-controls="kt_user_view_details">Details
+                                            
+                                        </div>
+                                        <span  (click)="action = 2">
+                                            <a href="javascript:;" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_details">Edit</a>
+                                        </span>
+                                    </div>
+                                    <div class="separator"></div>
+                                    <div 
+                                    *ngIf="action == 1"  class="collapse show">
+                                        <div class="pb-5 fs-6">
+                                            <div class="fw-bolder mt-5">Industry</div>
+                                            <div class="text-gray-600">{{ job.industry }}</div>
+                                            <div class="fw-bolder mt-5">Minimum Age</div>
+                                            <div class="text-gray-600">
+                                                <a class="text-gray-600 text-hover-primary">
+                                                    {{ job.minimum_age }}
+                                                </a>
+                                            </div>
+                                            <div class="fw-bolder mt-5">Description</div>
+                                            <div class="text-gray-600">
+                                                {{ job.description }}
+                                            </div>
+                                            <div class="fw-bolder mt-5">Starting Salary</div>
+                                            <div class="text-gray-600">{{ job.starting_salary }}</div>
+                                            <div class="fw-bolder mt-5">Zip code</div>
+                                            <div class="text-gray-600">{{ job.zip_code }}</div>
+                                        </div>
+                                    </div>
+
+
+                                    <form 
+                                    *ngIf="action == 2"
+                                    id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate" [formGroup]="form" (submit)="submit()">
+                                        <div class="card-body border-top p-9">
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                                    Title
+                                                </label>
+                                                <div class="col-lg-8">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                                            <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Title" formControlName="title" name="title">
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+
+                                                                <div *ngIf="form.controls.title.touched && form.controls.title.hasError('required')">
+                                                                    Title is required
+                                                                </div>
+                                                                <div *ngIf="form.controls.title.dirty && form.controls.title.errors">
+                                                                    Invalid Title
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Industry</label>
+                                                <div class="col-lg-8">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                                            <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="industry" formControlName="industry" name="industry">
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div *ngIf="form.controls.industry.touched && form.controls.industry.hasError('required')">
+                                                                    Industry is required
+                                                                </div>
+                                                                <div *ngIf="form.controls.industry.dirty && form.controls.industry.errors">
+                                                                    Invalid industry
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Minimum Age</label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <input type="text" name="minimum_age" class="form-control form-control-lg form-control-solid" placeholder="Minimum Age" formControlName="minimum_age" name="minimum_age">
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div *ngIf="form.controls.minimum_age.touched && form.controls.minimum_age.hasError('required')">
+                                                            Minimum Age is required
+                                                        </div>
+                                                        <div *ngIf="form.controls.minimum_age.dirty && form.controls.minimum_age.errors">
+                                                            Invalid Minimum Age
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                    <span class="required">Starting Salary</span>
+                                                </label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <input type="tel" class="form-control form-control-lg form-control-solid" placeholder="Starting Salary" formControlName="starting_salary" name="starting_salary">
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div *ngIf="form.controls.starting_salary.touched && form.controls.starting_salary.hasError('required')">
+                                                            Starting Salary is required
+                                                        </div>
+                                                        <div *ngIf="form.controls.starting_salary.dirty && form.controls.starting_salary.errors">
+                                                            Invalid Starting Salary
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                    <span class="required">Zip Code</span>
+                                                </label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <input type="tel" class="form-control form-control-lg form-control-solid" placeholder="Zip Code" formControlName="zip_code" name="zip_code">
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div *ngIf="form.controls.zip_code.touched && form.controls.zip_code.hasError('required')">
+                                                            Zip Code is required
+                                                        </div>
+                                                        <div *ngIf="form.controls.zip_code.dirty && form.controls.zip_code.errors">
+                                                            Invalid Zip Code
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                    <span class="required">Descripiton</span>
+                                                </label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <textarea class="form-control form-control-lg form-control-solid" placeholder="description" formControlName="description" name="description"></textarea>
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div *ngIf="form.controls.description.touched && form.controls.description.hasError('required')">
+                                                            Description is required
+                                                        </div>
+                                                        <div *ngIf="form.controls.description.dirty && form.controls.description.errors">
+                                                            Invalid Description
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                            <button (click)="action = 1" type="submit" class="btn btn-dark" id="kt_account_profile_details_submit" [disabled]="loading">
+                                                Discard
+                                            </button>
+                                            &nbsp;&nbsp;
+                                            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit" [disabled]="loading">
+                                                <span *ngIf="!loading">Submit</span>
+                                                <span *ngIf="loading">Please wait..</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

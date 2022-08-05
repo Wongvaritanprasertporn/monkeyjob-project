@@ -1,0 +1,157 @@
+<div id="loader" *ngIf="loading"></div>
+
+<div
+  id="kt_body"
+  class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+  style="--kt-toolbar-height: 55px; --kt-toolbar-height-tablet-and-mobile: 55px"
+>
+  <div class="d-flex flex-column flex-root">
+    <div class="page d-flex flex-row flex-column-fluid">
+      <app-leftmenu></app-leftmenu>
+      <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+        <app-header></app-header>
+        <div
+          class="content d-flex flex-column flex-column-fluid"
+          id="kt_content"
+        >
+          <div class="toolbar" id="kt_toolbar">
+            <div
+              id="kt_toolbar_container"
+              class="container-fluid d-flex flex-stack"
+            >
+              <div
+                data-kt-swapper="true"
+                data-kt-swapper-mode="prepend"
+                data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0"
+              >
+                <h1
+                  class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"
+                >
+                  Manage Industries
+                </h1>
+                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                <ul
+                  class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1"
+                >
+                  <li class="breadcrumb-item text-dark">List Industries</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+              <div class="card">
+                <div class="card-body py-4">
+                  <form
+                    class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                    novalidate="novalidate"
+                    [formGroup]="form"
+                    (submit)="submit()"
+                  >
+                    <div class="row mb-6">
+                      <div class="col-lg-8">
+                        <input
+                          type="text"
+                          class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                          placeholder="Title"
+                          formControlName="title"
+                          name="title"
+                        />
+                        <div
+                          class="fv-plugins-message-container invalid-feedback"
+                        >
+                          <div
+                            *ngIf="
+                              form.controls.title.touched &&
+                              form.controls.title.hasError('required')
+                            "
+                          >
+                            Title is required
+                          </div>
+                          <div
+                            *ngIf="
+                              form.controls.title.dirty &&
+                              form.controls.title.errors
+                            "
+                          >
+                            Invalid Title
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          [disabled]="loading"
+                        >
+                          <span *ngIf="!loading">Submit</span>
+                          <span *ngIf="loading">Please wait..</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <div
+                    id="kt_table_users_wrapper"
+                    class="dataTables_wrapper dt-bootstrap4 no-footer"
+                  >
+                    <div class="table-responsive">
+                      <table
+                        class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
+                        id="kt_table_users"
+                      >
+                        <thead>
+                          <tr
+                            class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0"
+                          >
+                            <th
+                              class="min-w-125px sorting"
+                              tabindex="0"
+                              aria-controls="kt_table_users"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Role: activate to sort column ascending"
+                              style="width: 155.844px"
+                            >
+                              Title
+                            </th>
+                            <th
+                              class="min-w-125px sorting"
+                              tabindex="0"
+                              aria-controls="kt_table_users"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Two-step: activate to sort column ascending"
+                              style="width: 155.844px"
+                            >
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-gray-600 fw-bold">
+                          <tr class="odd" *ngFor="let industry of industries">
+                            <td>{{ industry.title }}</td>
+                            <td>
+                              <button
+                                class="btn btn-danger btn-sm"
+                                (click)="deleteIndustry(industry)"
+                              >
+                                Delete Industry
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+</div>

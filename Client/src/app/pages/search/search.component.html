@@ -1,0 +1,242 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header2></app-header2>
+
+<div class="mainHeaderInner">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <div class="">
+          <form class="mainJobSearchSec" [formGroup]="form" (submit)="submit()">
+            <div class="findJobBox">
+              <div class="haveIconText">
+                <label class="visually-hidden" for="specificSizeInputName"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="specificSizeInputName"
+                  placeholder="Job title, keywords, or company"
+                  formControlName="title"
+                  name="title"
+                />
+                <div class="iconTextI">
+                  <i class="fas fa-search"></i> <strong>What:</strong>
+                </div>
+              </div>
+              <div class="">
+                <div
+                  *ngIf="
+                    form.controls.title.touched &&
+                    form.controls.title.hasError('required')
+                  "
+                >
+                  title is required
+                </div>
+                <div
+                  *ngIf="
+                    form.controls.title.dirty && form.controls.title.errors
+                  "
+                >
+                  Invalid title
+                </div>
+              </div>
+            </div>
+            <div class="findJobBox">
+              <div class="haveIconText">
+                <label class="visually-hidden" for="specificSizeInputName1"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="specificSizeInputName1"
+                  placeholder="City or Postcode"
+                  formControlName="zip_code"
+                  name="zip_code"
+                />
+                <div class="iconTextI">
+                  <i class="fas fa-map-marker-alt"></i> <strong>Where:</strong>
+                </div>
+                <div class="">
+                  <div
+                    *ngIf="
+                      form.controls.zip_code.touched &&
+                      form.controls.zip_code.hasError('required')
+                    "
+                  >
+                    zip_code is required
+                  </div>
+                  <div
+                    *ngIf="
+                      form.controls.zip_code.dirty &&
+                      form.controls.zip_code.errors
+                    "
+                  >
+                    Invalid zip_code
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="findJobBtnBox">
+              <button type="submit" class="findJobBtn btn btn-primary">
+                Find Jobs
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="jsmFilters">
+                    <div class="side"></div>
+                    <div class="filterBox">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Age</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="filterBox">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Distance</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="filterBox">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Salary</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="side"></div>
+                </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="midContent jobsPage">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jobsPageLeft">
+          <h2>Search Results</h2>
+          <div
+            class="fjBox"
+            *ngFor="let job of jobs"
+            routerLink="/jobs/job/{{ job.id }}"
+          >
+            <div class="fjbTitle">
+              <h2>{{ job.title }}</h2>
+            </div>
+            <!-- <div class="fjbTitleSub">
+                            <h3>Cascades</h3>
+                        </div> -->
+            <div class="fjbDetail">
+              <span
+                ><i class="fas fa-map-marker-alt"></i> {{ job.address }},
+                {{ job.zip_code }}</span
+              >
+              <span
+                ><i class="fas fa-money-bill-wave"></i>
+                {{ job.starting_salary }}</span
+              >
+              <span
+                ><i class="far fa-clock"></i>
+                {{ job.createdAt | date: "fullDate" }}</span
+              >
+            </div>
+            <div class="fjbTagsList">
+              <span class="btn btn-primary fjbTags">{{ job.type }}</span>
+              <span class="btn btn-warning fjbTags">{{ job.priority }}</span>
+              <span class="btn btn-success fjbTags"
+                >Age {{ job.minimum_age }} to {{ job.maximum_age }}</span
+              >
+            </div>
+            <p class="fjbHelpText">
+              {{ job.description }}
+            </p>
+            <p class="fjbHelpText">
+              <i class="far fa-clock"></i>
+              {{ job.updatedAt | date: "fullDate" }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-7">
+                <div class="jobsPageRight">
+                    <div class="fjBoxDetail">
+                        <div class="fjBoxDetailLeft">
+                            <div class="fjbTitle">
+                                <h2>General Labour</h2>
+                            </div>
+                            <div class="fjbTitleSub">
+                                <h3><a href="businessDetail.php" target="_blank">Cascades</a></h3>
+                            </div>
+                            <div class="fjbDetail">
+                                <span><i class="fas fa-map-marker-alt"></i> Montreal, QC</span>
+                                <span><i class="fas fa-money-bill-wave"></i> $17.50 - $18.85</span>
+                            </div>
+                            <div class="fjbTagsList">
+                                <span class="btn btn-primary fjbTags">Full Time</span>
+                                <span class="btn btn-warning fjbTags">Urgent</span>
+                                <span class="btn btn-success fjbTags">Age 18 to 28</span>
+                            </div>
+                            <div class="fjbTagsBtns">
+                                <div class="mainBtn"><a href="#">Appy This Job</a></div>
+                                <div class="mainBtnFloat">
+                                    <a href="dashboard.php">
+                                        <div class="fjbTag">
+                                            <img src="assets/images/tag.png" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fjBoxDetailRight">
+                            <div class="fjBDRightInner">
+                                <div class="fjBDlogo">
+                                    <a href="businessDetail.php" target="_blank">
+                                        <img src="assets/images/cascades.png" />
+                                    </a>
+                                </div>
+                                <div class="fjBDMessage">
+                                    <a href="messagesApplicant.php">
+                                        <i class="far fa-comment-dots"></i> Message
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fjBoxProductDescription">
+                        <div class="prodDes">
+                            <h2>#revealyourpotential #LifeAtCascades</h2>
+                            <p class="fjbHelpText">
+                                Cascades believes in the success of an inclusive organization that values diversity
+                                within its team. It will fairly consider all those qualified for this position. The use
+                                of the masculine in our communication refers to both women and men.
+                            </p>
+                        </div>
+                        <div class="prodDes">
+                            <h2>About Cascades</h2>
+                            <p class="fjbHelpText">
+                                Being part of Cascades means revealing the full potential of matter, people and ideas.
+                                We are a source of possibilities. Since 1964, we have been offering sustainable,
+                                innovative and value-creating solutions in terms of packaging, hygiene and recovery.
+                                <br /><br />
+                                Join 12,000 women and men working in a network of more that 90 business units located in
+                                North America and Europe.
+                            </p>
+                        </div>
+                        <div class="businessViewMoreBtn">
+                            <a class="swButton lightBtn" href="jobDetailsApplicant.php" target="_blank">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+    </div>
+  </div>
+</div>

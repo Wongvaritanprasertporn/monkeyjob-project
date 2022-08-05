@@ -1,0 +1,38 @@
+<div class="dashboardTopBar sticky-top flex-md-nowrap">
+  <div class="dtpLeft">
+    <div class="dbMobileToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="brandLogo">
+      <a class="navbar-brand" routerLink="/dashboard"><img src="./assets/images/Logo_Header.png" class="img-fluid" /></a>
+    </div>
+  </div>
+  <div class="dtpRight">
+    <div class="">
+      <!-- <a href="javascript:;"><img src="./assets/images/bellIcon.png" /></a> -->
+      <!-- <a href="javascript:;"><img src="./assets/images/starIcon.png" /></a> -->
+      <div class="btn-group">
+        <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static"
+          aria-expanded="false">
+          <div class="trUserIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; color: #ff8a00;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-lg-end">
+          <li>
+            <button [routerLink]="auth.user.user_type == 2 ? '/profile' : '/account'" class="dropdown-item" type="button">
+              Profile
+            </button>
+        </li>
+        <li>
+          <button routerLink="/logout" class="dropdown-item" type="button">
+            Logout
+          </button>
+      </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

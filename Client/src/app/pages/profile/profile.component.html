@@ -1,0 +1,212 @@
+<app-header></app-header>
+
+<div class="dashboardMid">
+  <app-leftmenu></app-leftmenu>
+
+  <div class="dmRightSide" *ngIf="auth.user.user_type == 2">
+    <div class="dmRightSideInner">
+      <div class="dInnerHead">
+        <div class="diTitle">
+          Profile
+        </div>
+        <div class="diBreadcrumb">
+          <div class="mainPageBreadCrumb">
+            <ul>
+              <li><a routerLink="/dashboard">Dashboard</a></li>
+              <li><a><i class="fas fa-angle-double-right"></i></a></li>
+              <li><a>Profile</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <form [formGroup]="form" (submit)="submit()">
+        <div class="dashboardWhiteBox">
+          <div class="dBoxTitle">
+            <h1>My Profile</h1>
+          </div>
+          <div class="formBox">
+            <!-- <div class="fbUpload">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="pnjUploadL">Browse Logo</label>
+                                    <label for="pnjUploadL" class="form-label">Max file size is 1MB, Minimum dimension: 330x200 And Suitable files are .jpg &amp; .png</label>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="pnjUploadC">Browse Cover</label>
+                                    <label for="pnjUploadC" class="form-label">Max file size is 1MB, Minimum dimension: 330x200 And Suitable files are .jpg &amp; .png</label>
+                                </div>
+                            </div> -->
+            <div class="contactPage">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Company Name <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter company" formControlName="company"
+                    name="company" />
+                  <div class="error">
+                    <div *ngIf="form.controls.company.touched && form.controls.company.hasError('required')">
+                      Company is required
+                    </div>
+                    <div *ngIf="form.controls.company.dirty && form.controls.company.errors">
+                      Invalid Company
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email Address <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter email" formControlName="email" name="email"
+                    [readonly]="auth.user.login_method == 'Google' || auth.user.login_method == 'Apple'" />
+                  <div class="error">
+                    <div *ngIf="form.controls.email.touched && form.controls.email.hasError('required')">
+                      Email is required
+                    </div>
+                    <div *ngIf="form.controls.email.dirty && form.controls.email.errors">
+                      Invalid email
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Phone <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter Phone" formControlName="phone"
+                    name="phone" />
+                  <div class="error">
+                    <div *ngIf="form.controls.phone.touched && form.controls.phone.hasError('required')">
+                      Phone is required
+                    </div>
+                    <div *ngIf="form.controls.phone.dirty && form.controls.phone.errors">
+                      Invalid Phone
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Website <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Website" formControlName="website"
+                    name="website" />
+                  <div class="error">
+                    <div *ngIf="form.controls.website.touched && form.controls.website.hasError('required')">
+                      Website is required
+                    </div>
+                    <div *ngIf="form.controls.website.dirty && form.controls.website.errors">
+                      Invalid Website
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Team Size <span class="error">*</span></label>
+                  <select class="form-select" formControlName="team_size" name="team_size">
+                    <option value="50-100">1-200</option>
+                    <option value="100-150">200-500</option>
+                    <option value="150-200">500-1000</option>
+                    <option value="200-300">1000-2000</option>
+                  </select>
+                  <div class="error">
+                    <div *ngIf="form.controls.team_size.touched && form.controls.team_size.hasError('required')">
+                      Team Size is required
+                    </div>
+                    <div *ngIf="form.controls.team_size.dirty && form.controls.team_size.errors">
+                      Invalid Team Size
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">About Company <span class="error">*</span></label>
+                  <textarea rows="5" class="form-control" placeholder="Write about your company"
+                    formControlName="company_description" name="company_description"></textarea>
+                  <div class="error">
+                    <div
+                      *ngIf="form.controls.company_description.touched && form.controls.company_description.hasError('required')">
+                      Field is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dashboardWhiteBox mt-4">
+          <div class="dBoxTitle">
+            <h1>Contact Information</h1>
+          </div>
+          <div class="formBox">
+            <div class="contactPage">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="pnjCountry" class="form-label">Country <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter Country" formControlName="country"
+                    name="country" />
+                  <div class="error">
+                    <div *ngIf="form.controls.country.touched && form.controls.country.hasError('required')">
+                      Country is required
+                    </div>
+                    <div *ngIf="form.controls.country.dirty && form.controls.country.errors">
+                      Invalid Country
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="pnjCity" class="form-label">City <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter City" formControlName="city" name="city" />
+                  <div class="error">
+                    <div *ngIf="form.controls.city.touched && form.controls.city.hasError('required')">
+                      City is required
+                    </div>
+                    <div *ngIf="form.controls.city.dirty && form.controls.city.errors">
+                      Invalid City
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label for="pnjCompleteAddress" class="form-label">Complete Address <span class="error">*</span></label>
+                  <input type="text" class="form-control" id="pnjCompleteAddress" placeholder="Enter address..."
+                    formControlName="address" name="address" />
+                  <div class="error">
+                    <div *ngIf="form.controls.address.touched && form.controls.address.hasError('required')">
+                      Address is required
+                    </div>
+                    <div *ngIf="form.controls.address.dirty && form.controls.address.errors">
+                      Invalid Address
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboardWhiteBox mt-4">
+          <!-- <div class="dBoxTitle">
+                            <h1>Social Network</h1>
+                        </div> -->
+          <div class="formBox">
+            <div class="contactPage">
+              <!-- <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="pnjFacebook" class="form-label">Facebook</label>
+                                        <input type="text" class="form-control" id="pnjFacebook" placeholder="www.faceboo.com/page name"/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="pnjTwitter" class="form-label">Twitter</label>
+                                        <input type="text" class="form-control" id="pnjTwitter" placeholder="www.twitter.com/page name"/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="pnjLinkedin" class="form-label">Linkedin</label>
+                                        <input type="text" class="form-control" id="pnjLinkedin" placeholder="www.linkedin.com/page name"/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="pnjInstagram" class="form-label">Instagram</label>
+                                        <input type="text" class="form-control" id="pnjInstagram" placeholder="www.instagram.com/page name"/>
+                                    </div>
+                                </div> -->
+              <div class="row adminFromBtn">
+                <div class="col-md-12 text-center ">
+                  <button type="submit" class="swButton darkBtn mt-3 loginButton" [disabled]="loading">
+                    <span *ngIf="!loading">Save Information</span>
+                    <span *ngIf="loading">Please wait..</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <app-footer></app-footer>
+  </div>

@@ -1,0 +1,66 @@
+<div class="mainHeaderInner loginPages">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <div class="mainPageTitle">
+          <h1>Continue with phone</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="midContent loginPage">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="loginPagesBox">
+          <form class="contactPage" [formGroup]="form" (submit)="submit()">
+            <div class="row">
+              <h5 *ngIf="action == 2">
+                {{form.value.country_code}}{{form.value.phone}}
+              </h5>
+              <div class="col-md-12 mb-3" [hidden]="action == 2">
+                <label for="logUserName" class="form-label">Country code</label>
+                <select class="form-control" formControlName="country_code" name="country_code">
+                  <option *ngFor="let allTimeZone of allTimeZones" [value]="allTimeZone.MobileCode">
+                    {{allTimeZone.Name}} ({{allTimeZone.MobileCode}})
+                  </option>
+                </select>
+                <div class="error">
+                  <div *ngIf="form.controls.country_code.touched && form.controls.country_code.hasError('required')">
+                    Country Code is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3" [hidden]="action == 2">
+                <label for="logUserName" class="form-label">Phone</label>
+                <input type="number" class="form-control" id="logUserName" placeholder="Enter Phone"
+                  formControlName="phone" name="phone" [readonly]="action == 2" />
+                <div class="error">
+                  <div *ngIf="form.controls.phone.touched && form.controls.phone.hasError('required')">
+                    Phone is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3" [hidden]="action == 1">
+                <label for="logUserName" class="form-label">Code</label>
+                <input type="text" class="form-control" id="logUserName" placeholder="Enter Code"
+                  formControlName="token" name="token" />
+              </div>
+              <button type="submit" class="swButton darkBtn mt-3 loginButton" [disabled]="loading">
+                <span *ngIf="!loading">Submit</span>
+                <span *ngIf="loading">Please wait..</span>
+              </button>
+            </div>
+          </form>
+          <div class="loginFormBtmSec">
+            <div class="haveAccount">
+              <a *ngIf="action == 1" routerLink="/login">Go Back</a>
+              <a *ngIf="action == 2" href="javascript:;" (click)="action = 1">Resend OTP / Edit Number</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

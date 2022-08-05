@@ -1,0 +1,150 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    Messages
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/">Dashboard</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>Messages</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboardWhiteBox p-0 otherListingPage">
+                <div class="messageBoxMain">
+                    <div class="messageBoxLeft">
+                        <div class="mblSearch">
+                            <div class="mblSearchInner">
+                                <input placeholder="Search">
+                                <i class="mblSearchIcon fas fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="messagerList">
+                            <a class="draBox" *ngFor="let co of conversation"
+                                routerLink="/jobs/messages/{{co.users[0]._id}}">
+                                <div class="drabImg">
+                                    <img src="assets/images/raIcon.png">
+                                </div>
+                                <div class="drabData">
+                                    <div class="drabData1">
+                                        <div class="raName">
+                                            {{ co.users[0].name }}
+                                        </div>
+                                        <div class="raDataBtm">
+                                            <span>
+                                                {{ co.message }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="drabData3">
+                                        <div class="drabInfo">
+                                            <span class="infoTime">{{ co.updatedAt | date:'fullDate'  }}</span>
+                                            <!-- <span class="infoMsgCount">2</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="messageBoxRight" *ngIf="user.id">
+                        <div class="messageUserInfo">
+                            <div class="draBox">
+                                <div class="drabImg">
+                                    <img src="assets/images/raIcon.png">
+                                </div>
+                                <div class="drabData">
+                                    <div class="drabData1">
+                                        <div class="raName">
+                                            {{ user.name }}
+                                        </div>
+                                        <!-- <div class="raDataBtm">
+                                            <span>Active</span>
+                                        </div> -->
+                                    </div>
+                                    <!-- <div class="drabData3">
+                                        <a href="javascript:;" class="drabAction" (click)="deleteConversation()">
+                                            Delete Conversation
+                                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Delete">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="messagerChatBox">
+                            <div #scrollMe class="messagerChatBoxText">
+                                <div *ngFor="let message of app.messageList">
+                                    <ng-container
+                                        *ngIf="(message.from_user_id == auth.user.id || message.to_user_id == auth.user.id) && (message.from_user_id == user.id || message.to_user_id == user.id)">
+                                        <div
+                                            [class]="(auth.user.id == message.from_user_id) ? 'mcbtRight' : 'mcbtLeft'">
+                                            <div class="draBox">
+                                                <!-- <div class="drabImg">
+                                                    <img src="assets/images/raIcon.png">
+                                                </div> -->
+                                                <div class="drabData">
+                                                    <div class="drabData1">
+                                                        <!-- <div class="raName">
+                                                            <span></span>
+                                                        </div> -->
+                                                        <div class="raDataBtm">
+                                                            <span>{{ message.createdAt | date:'fullDate' }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mcbtLeftChat">
+                                                {{ message.message }}
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="messagerChatBoxType">
+                                <form class="mainJobSearchSec" [formGroup]="form" (submit)="submit()">
+                                    <div class="mcbtLeftType">
+                                        <div class="mcbtLeftInner">
+                                            <input formControlName="newMessage" name="newMessage"
+                                                placeholder="Type message..">
+                                        </div>
+                                    </div>
+                                    <div class="mcbtRightType">
+                                        <div class="mcbtRightInner">
+                                            <!-- <div class="mcbtAttachBtn">
+                                                <a href="javascript:;">
+                                                <i class="fas fa-paperclip"></i>
+                                            </a>
+                                            </div>
+                                            <div class="zoomIcon">
+                                                <a href="javascript:;">
+                                                <img src="assets/images/Zoom-Logo-Vector-.webp">
+                                            </a>
+                                            </div> -->
+                                            <div class="sendBtn">
+                                                <div class="swAdminBtn">
+                                                    <button type="submit" class="swButton darkBtn">Send</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

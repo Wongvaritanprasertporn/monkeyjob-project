@@ -1,0 +1,53 @@
+<div id="kt_aside" class="aside aside-dark aside-hoverable">
+	<div class="aside-logo flex-column-auto">
+		<a routerLink="/dashboard">
+			<img alt="Logo" src="./assets/media/logos/logo.png" class="h-25px logo" />
+		</a>
+	</div>
+	<div class="aside-menu flex-column-fluid">
+		<div class="hover-scroll-overlay-y my-5 my-lg-5">
+			<div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500">
+				<div class="menu-item">
+					<a [class]="route == '/dashboard' ? 'menu-link active' : 'menu-link'" routerLink="/dashboard">
+						<span class="menu-title">Dashboard</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a [class]="route == '/jobs' ? 'menu-link active' : 'menu-link'" routerLink="/jobs">
+						<span class="menu-title">Manage Jobs</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a [class]="route == '/users' ? 'menu-link active' : 'menu-link'" routerLink="/users">
+						<span class="menu-title">Manage Employer</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a [class]="route == '/student' ? 'menu-link active' : 'menu-link'" routerLink="/student">
+						<span class="menu-title">Manage Jobseeker</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a [class]="route == '/industries' ? 'menu-link active' : 'menu-link'" routerLink="/industries">
+						<span class="menu-title">Manage Industries</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a [class]="route == '/profile' ? 'menu-link active' : 'menu-link'" routerLink="/profile">
+						<span class="menu-title">Profile</span>
+					</a>
+				</div>
+				<div class="menu-item" *ngIf="auth.user.login_method == 'Email'">
+					<a [class]="route == '/password' ? 'menu-link active' : 'menu-link'" routerLink="/password">
+						<span class="menu-title">Change Password</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link" routerLink="/logout">
+						<span class="menu-title">Logout</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

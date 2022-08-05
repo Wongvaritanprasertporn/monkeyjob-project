@@ -1,0 +1,254 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+
+<div class="dashboardMid">
+  <app-leftmenu></app-leftmenu>
+  <div class="dmRightSide">
+    <div class="dmRightSideInner">
+      <div class="dInnerHead">
+        <div class="diTitle">
+          Welcome, {{ auth.user.name ? auth.user.name : auth.user.phone }}
+        </div>
+      </div>
+      <ng-container *ngIf="auth.user.user_type == 1">
+        <div class="d4Sections">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="d4SecBox bgBlue" routerLink="/jobs/shortlist">
+                <div class="d4SecBoxImg">
+                  <img src="assets/images/d4i3.png">
+                </div>
+                <div class="d4SecBoxData">
+                  <h2>{{ counts.shortlisted_applications }}</h2>
+                  <h4>Shortlisted Jobs</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d4SecBox bgYellow" routerLink="/jobs/applied">
+                <div class="d4SecBoxImg">
+                  <img src="assets/images/d4i1.png">
+                </div>
+                <div class="d4SecBoxData">
+                  <h2>{{ counts.applications }}</h2>
+                  <h4>Applied Jobs</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d4SecBox bgPurple" routerLink="/jobs/messages">
+                <div class="d4SecBoxImg">
+                  <img src="assets/images/d4i4.png">
+                </div>
+                <div class="d4SecBoxData">
+                  <h2>{{ counts.messages }}</h2>
+                  <h4>Unread Message</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d2Sections dashbaordPage">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="d2SecBoxLeft">
+                <div class="dBoxTitle">
+                  <h1>Recent Applied Jobs</h1>
+                </div>
+                <div class="draList">
+                  <div class="draBox" *ngFor="let application of applications">
+                    <div class="drabData">
+                      <div class="drabData1">
+                        <div class="raName">
+                          {{ application.jobs[0].title }}
+                        </div>
+                        <div class="raDataBtm">
+                          <span><i class="fas fa-map-marker-alt"></i>
+                            {{ application.jobs[0].address }},{{application.jobs[0].zip_code}}</span>
+                          <span><i class="fas fa-money-bill-wave"></i>
+                            {{currency}}{{application.jobs[0].starting_salary}}</span>
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col-md-12">
+                            <div class="fjbTagsList">
+                              <span class="btn btn-primary fjbTags">{{application.jobs[0].type}}</span>
+                              <span class="btn btn-warning fjbTags">{{application.jobs[0].priority}}</span>
+                              <span class="btn btn-success fjbTags">Age {{application.jobs[0].minimum_age}} to
+                                {{application.jobs[0].maximum_age}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="drabData2">
+                        <div class="swAdminBtn">
+                          <a class="swButton darkBtn" routerLink="/jobs/job/{{application.jobs[0]._id}}">View Job</a>
+                        </div>
+                      </div>
+                      <!-- <div class="drabData3">
+                                                    <div class="drabAction">
+                                                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Shortlist">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </button>                                                        
+                                                    </div>      
+                                                </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-5">
+              <div class="d2SecBoxRight">
+                <div class="dBoxTitle">
+                  <h1>Notifications</h1>
+                </div>
+                <div class="dNotiRightList">
+                  <div class="dNotiRightBox">
+                    <div class="nrbBellIcon">
+                      <i class="far fa-bell"></i>
+                    </div>
+                    <div class="nrbNotiText">
+                      <strong>Someone downloaded resume</strong>
+                      <br>
+                      <span>10 days ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="auth.user.user_type == 2">
+        <div class="d4Sections">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="d4SecBox bgBlue" routerLink="/jobs/list">
+                <div class="d4SecBoxImg">
+                  <img src="./assets/images/d4i1.png" />
+                </div>
+                <div class="d4SecBoxData">
+                  <h2>{{ counts.jobs }}</h2>
+                  <h4>Total Job Posted</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="d4SecBox bgGreen" routerLink="/jobs/list">
+                <div class="d4SecBoxImg">
+                  <img src="./assets/images/d4i2.png" />
+                </div>
+                <div class="d4SecBoxData" routerLink="/jobs/applications">
+                  <h2>{{ counts.applications }}</h2>
+                  <h4>Recieved Applications</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="d4SecBox bgYellow" routerLink="/jobs/list">
+                <div class="d4SecBoxImg">
+                  <img src="./assets/images/d4i3.png" />
+                </div>
+                <div class="d4SecBoxData" routerLink="/jobs/shortlist">
+                  <h2>{{ counts.shortlisted_applications }}</h2>
+                  <h4>Shortlist Applications</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="d4SecBox bgPurple" routerLink="/jobs/list">
+                <div class="d4SecBoxImg">
+                  <img src="./assets/images/d4i4.png" />
+                </div>
+                <div class="d4SecBoxData" routerLink="/jobs/messages">
+                  <h2>{{ counts.messages }}</h2>
+                  <h4>Unread Message</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d2Sections dashbaordPage">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="d2SecBoxLeft">
+                <div class="dBoxTitle">
+                  <h1>Recent Applicants</h1>
+                </div>
+                <div class="draList">
+                  <small *ngIf="!applications.length">No Recent Applicants.</small>
+                  <div class="draBox" *ngFor="let application of applications">
+                    <div class="drabImg">
+                      <img src="./assets/images/raIcon.png" />
+                    </div>
+                    <div class="drabData">
+                      <div class="drabData1">
+                        <div class="raName">
+                          {{ application.jobs[0].title }}
+                        </div>
+                        <div class="raDataBtm">
+                          <span>{{ application.jobs[0].industry }}</span>
+                          <span><i class="fas fa-map-marker-alt"></i> {{ application.jobs[0].address }}, {{
+                            application.jobs[0].zip_code }}</span>
+                          <span><i class="fas fa-money-bill-wave"></i> {{currency}}{{application.jobs[0].starting_salary
+                            }}</span>
+                        </div>
+                      </div>
+                      <div class="drabData2">
+                        <div class="swAdminBtn">
+                          <a routerLink="/jobs/applicant/{{application.applied_by_user_id}}"
+                            class="swButton darkBtn">View Profile</a>
+                        </div>
+                      </div>
+                      <div class="drabData3" *ngIf="application.status == 1">
+                        <div class="drabAction">
+                          <button (click)="updateApplicationsStatus(application, 2)" type="button"
+                            class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Shortlist">
+                            <i class="fas fa-check"></i>
+                          </button>
+                          <button (click)="updateApplicationsStatus(application, 3)" type="button"
+                            class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject">
+                            <i class="far fa-times-circle"></i>
+                          </button>
+                          <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+                          title="Delete">
+                          <i class="far fa-trash-alt"></i>
+                        </button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <div class="d2SecBoxRight">
+                <div class="dBoxTitle">
+                  <h1>Notifications</h1>
+                </div>
+                <div class="dNotiRightList">
+                  <div class="dNotiRightBox">
+                    <div class="nrbBellIcon">
+                      <i class="far fa-bell"></i>
+                    </div>
+                    <div class="nrbNotiText">
+                      <strong>Wade Gold</strong>
+                      applied for a job
+                      <span>General Labour </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

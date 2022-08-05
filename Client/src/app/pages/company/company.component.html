@@ -1,0 +1,426 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+<div class="dashboardMid">
+    <div class="dmLeftSide">
+        <div class="candidateProfileSidebar">
+            <div class="cpButton">
+                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> Go Back</a>
+            </div>
+        </div>
+    </div>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="mainBusinessDetail">
+                <div class="container">
+                    <div class="mbdCoverPhoto mt-3">
+                        <img src="assets/images/bdHeaderImg.jpg">
+                    </div>
+                    <div class="mbdAfterHeader">
+                        <div class="mbdProfilePhoto">
+                            <img src="assets/images/bdprofileImg.jpg">
+                        </div>
+                        <div class="mbdProfileData">
+                            <h1>{{user.company}}</h1>
+                            <h3 class="colorLight">{{user.address}}</h3>
+                            <div class="stiStars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half"></i>
+                            </div>
+                        </div>
+                        <div class="mbdProfileActionBtn">
+                            <div class="mpab1" *ngIf="user.id != auth.user.id">
+                                <a class="swButton lightBtn" routerLink="/jobs/messages/{{user.id}}">
+                                    <i class="fa fa-comment-dots"></i>
+                                    Message</a>
+                            </div>
+                            <div class="mpab2">
+                                <a data-bs-toggle="modal" href="#exampleModalToggleAR" role="button"
+                                    class="swButton darkBtn">Add Review</a>
+                                <div class="modal fade rtjModal" id="exampleModalToggleAR" aria-hidden="true"
+                                    aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content contactPage">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalToggleLabel">Add A Review</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="daApplyThisJobMB">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-md-12 mbdRatingBox">
+                                                                <div class="rating">
+                                                                    <input type="radio" id="star5" name="rating"
+                                                                        value="5">
+                                                                    <label class="star" for="star5" title="Awesome"
+                                                                        aria-hidden="true"></label>
+                                                                    <input type="radio" id="star4" name="rating"
+                                                                        value="4">
+                                                                    <label class="star" for="star4" title="Great"
+                                                                        aria-hidden="true"></label>
+                                                                    <input type="radio" id="star3" name="rating"
+                                                                        value="3">
+                                                                    <label class="star" for="star3" title="Very good"
+                                                                        aria-hidden="true"></label>
+                                                                    <input type="radio" id="star2" name="rating"
+                                                                        value="2">
+                                                                    <label class="star" for="star2" title="Good"
+                                                                        aria-hidden="true"></label>
+                                                                    <input type="radio" id="star1" name="rating"
+                                                                        value="1">
+                                                                    <label class="star" for="star1" title="Bad"
+                                                                        aria-hidden="true"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="applyThisJobMBTextarea mb-0">
+                                                            <div class="">
+                                                                <label for="atjAdditionalInformation"
+                                                                    class="form-label">Your Review</label>
+                                                                <input class="form-control mb-3"
+                                                                    placeholder="Write a headline for your review...">
+                                                                <textarea rows="3" class="form-control"
+                                                                    id="atjAdditionalInformation"
+                                                                    placeholder="Write your review here..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="swButton lightBtn">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mbdBusiDetail">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="bdMidLeft">
+                                    <h1 class="colorLight">
+                                        About The Company
+                                    </h1>
+                                    <p>
+                                        {{user.company_description}}
+                                    </p>
+                                    <a data-bs-toggle="modal" href="#exampleModalToggle" role="button"
+                                        class="swButton lightFlotBtn"><i class="fas fa-flag"></i> &nbsp;Report This
+                                        Business</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bdMidLeft">
+                                    <div class="cardWhiteBox">
+                                        <div class="atcRightList">
+                                            <div class="atcRightBox">
+                                                <div class="atcIcon">
+                                                    <i class="far fa-envelope"></i>
+                                                </div>
+                                                <div class="atcData">
+                                                    <div class="atcdTitle">
+                                                        Email
+                                                    </div>
+                                                    <div class="atcdValue">
+                                                        {{user.email}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="atcRightBox">
+                                                <div class="atcIcon">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                </div>
+                                                <div class="atcData">
+                                                    <div class="atcdTitle">
+                                                        Phone
+                                                    </div>
+                                                    <div class="atcdValue">
+                                                        {{user.phone}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="atcRightBox">
+                                                <div class="atcIcon">
+                                                    <i class="fas fa-globe"></i>
+                                                </div>
+                                                <div class="atcData">
+                                                    <div class="atcdTitle">
+                                                        Website
+                                                    </div>
+                                                    <div class="atcdValue">
+                                                        {{user.website}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="atcRightBox">
+                                                <div class="atcIcon">
+                                                    <i class="fas fa-users"></i>
+                                                </div>
+                                                <div class="atcData">
+                                                    <div class="atcdTitle">
+                                                        Team size
+                                                    </div>
+                                                    <div class="atcdValue">
+                                                        {{user.team_size}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="atcRightBox">
+                                                <div class="atcIcon">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                </div>
+                                                <div class="atcData">
+                                                    <div class="atcdTitle">
+                                                        Address
+                                                    </div>
+                                                    <div class="atcdValue">
+                                                        {{user.address}},
+                                                        {{user.zip_code}} 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="atcRightBox">
+                                                <div class="atcIcon">
+
+                                                </div>
+                                                <div class="atcData">
+                                                    <div class="atcdTitle">
+                                                        Social Network
+                                                    </div>
+                                                    <div class="atcdValue">
+                                                        <div class="fmeLinks text-left">
+                                                            <ul class="text-left">
+                                                                <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a>
+                                                                </li>
+                                                                <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
+                                                                <li><a href="javascript:;"><i class="fab fa-linkedin"></i></a></li>
+                                                                <li><a href="javascript:;"><i class="fab fa-instagram"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bddSep"></div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="bdMidLeft">
+                                    <h1 class="colorLight">
+                                        Reviews
+                                    </h1>
+
+                                    <div class="mlReviewList">
+                                        <div class="mlRBox">
+                                            <div class="draBox">
+                                                <div class="drabImg">
+                                                    <img src="assets/images/raIcon.png">
+                                                </div>
+                                                <div class="drabData">
+                                                    <div class="drabData1">
+                                                        <div class="raName">
+                                                            Darlene Robertson
+                                                        </div>
+                                                        <div class="raDataBtm d-flex">
+                                                            4.5
+                                                            <div class="stiStars">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star-half"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="reviewText">
+                                                <strong>Fast paced &amp; organized</strong>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                                    eiusmod
+                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                                    ea
+                                                    commodo consequat.</p>
+                                            </div>
+                                        </div>
+                                        <div class="mlRBox">
+                                            <div class="draBox">
+                                                <div class="drabImg">
+                                                    <img src="assets/images/raIcon.png">
+                                                </div>
+                                                <div class="drabData">
+                                                    <div class="drabData1">
+                                                        <div class="raName">
+                                                            Leslie Alexander
+                                                        </div>
+                                                        <div class="raDataBtm d-flex">
+                                                            4.5
+                                                            <div class="stiStars">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star-half"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="reviewText">
+                                                <strong>Awesome people</strong>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                                    eiusmod
+                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                                    ea
+                                                    commodo consequat.</p>
+                                            </div>
+                                        </div>
+                                        <div class="mlRBox">
+                                            <div class="draBox">
+                                                <div class="drabImg">
+                                                    <img src="assets/images/raIcon.png">
+                                                </div>
+                                                <div class="drabData">
+                                                    <div class="drabData1">
+                                                        <div class="raName">
+                                                            James Smith
+                                                        </div>
+                                                        <div class="raDataBtm d-flex">
+                                                            4.5
+                                                            <div class="stiStars">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star-half"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="reviewText">
+                                                <strong>Great company to work with</strong>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                                    eiusmod
+                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                                    ea
+                                                    commodo consequat.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bdMidLeft">
+                                    <div class="cardWhiteBox">
+                                        <div class="bdRightSide2">
+                                            <h2>What would you say about your employer?</h2>
+                                            <h3>Help fellow job seekers by sharing your unique experience.</h3>
+                                            <a data-bs-toggle="modal" href="#exampleModalToggleAR" role="button"
+                                                class="swButton darkBtn">Write A Review</a>
+                                            <img src="assets/images/Layer-2599.png" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade rtjModal" id="exampleModalToggle" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content contactPage">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalToggleLabel">Report This Business</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="daApplyThisJobMB">
+                                            <form>
+                                                <div class="applyThisJobMBCheckBox mb-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="flexRadioDefault" id="flexRadioDefault1">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            It is offensive, discriminatory
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="flexRadioDefault" id="flexRadioDefault2">
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            It seems like a fake Business
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="flexRadioDefault" id="flexRadioDefault3">
+                                                        <label class="form-check-label" for="flexRadioDefault3">
+                                                            It is inaccurate
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="flexRadioDefault" id="flexRadioDefault4">
+                                                        <label class="form-check-label" for="flexRadioDefault4">
+                                                            It is an advertisement
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="flexRadioDefault" id="flexRadioDefault5">
+                                                        <label class="form-check-label" for="flexRadioDefault5">
+                                                            Other
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="applyThisJobMBTextarea mb-0">
+                                                    <div class="">
+                                                        <label for="atjAdditionalInformation"
+                                                            class="form-label">Additional
+                                                            Information</label>
+                                                        <textarea rows="3" class="form-control"
+                                                            id="atjAdditionalInformation"
+                                                            placeholder="Enter here..."></textarea>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="swButton lightBtn">Submit</button>
+                                        <div class="swInputHelpText mt-2">
+                                            All Business Ads are subject to Job Portal's <a href="javascript:;">Terms of Service</a>.
+                                            We
+                                            allow users to flag postings that may be in violation of those terms.
+                                            Business
+                                            Ads may also be flagged by Job Portal. However, no moderation system is
+                                            perfect,
+                                            and flagging a posting does not ensure that it will be removed.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+<div id="loader" *ngIf="loading"></div>
+
+<div id="kt_body"
+    class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+    style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <div class="d-flex flex-column flex-root">
+        <div class="page d-flex flex-row flex-column-fluid">
+            <app-leftmenu></app-leftmenu>
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                <app-header></app-header>
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    <div class="toolbar" id="kt_toolbar">
+                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                                data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                                class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Manage Jobs</h1>
+                                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                                    <li class="breadcrumb-item text-dark">List Jobs</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                                <div class="m-0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <div id="kt_content_container" class="container-xxl">
+                            <div class="card">
+                                <div class="card-body py-4">
+                                    <div id="kt_table_users_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
+                                                id="kt_table_users">
+                                                <thead>
+                                                    <tr
+                                                        class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Role: activate to sort column ascending"
+                                                            style="width: 155.844px;">Title
+                                                        </th>
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Last login: activate to sort column ascending"
+                                                            style="width: 155.844px;">Industry
+                                                        </th>
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Two-step: activate to sort column ascending"
+                                                            style="width: 155.844px;">Minimum age
+                                                        </th>
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Joined Date: activate to sort column ascending"
+                                                            style="width: 198.969px;">Starting salary
+                                                        </th>
+                                                        <th class="min-w-125px sorting" rowspan="1" colspan="1"
+                                                            aria-label="Actions" style="width: 125.188px;">
+                                                            Zip code
+                                                        </th>
+                                                        <th class="min-w-125px sorting" rowspan="1" colspan="1"
+                                                            aria-label="Actions" style="width: 125.188px;">
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-gray-600 fw-bold">
+                                                    <tr class="odd" *ngFor="let job of jobs">
+                                                        <td>{{job.title}}</td>
+                                                        <td>
+                                                            {{job.industry}}
+                                                        </td>
+                                                        <td>
+                                                            {{job.minimum_age}}
+                                                        </td>
+                                                        <td>
+                                                            {{job.starting_salary}}
+                                                        </td>
+                                                        <td>
+                                                            {{job.zip_code}}
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-info btn-sm"
+                                                                routerLink="/job/{{job.id}}">View
+                                                                Job</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div
+                                                class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                                            </div>
+                                            <div
+                                                class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                    id="kt_table_users_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button page-item previous disabled"
+                                                            id="kt_table_users_previous"><a href="#"
+                                                                aria-controls="kt_table_users" data-dt-idx="0"
+                                                                tabindex="0" class="page-link"><i
+                                                                    class="previous"></i></a>
+                                                        </li>
+                                                        <li class="paginate_button page-item active"><a href="#"
+                                                                aria-controls="kt_table_users" data-dt-idx="1"
+                                                                tabindex="0" class="page-link">1</a></li>
+                                                        <li class="paginate_button page-item "><a href="#"
+                                                                aria-controls="kt_table_users" data-dt-idx="2"
+                                                                tabindex="0" class="page-link">2</a></li>
+                                                        <li class="paginate_button page-item "><a href="#"
+                                                                aria-controls="kt_table_users" data-dt-idx="3"
+                                                                tabindex="0" class="page-link">3</a></li>
+                                                        <li class="paginate_button page-item next"
+                                                            id="kt_table_users_next"><a href="#"
+                                                                aria-controls="kt_table_users" data-dt-idx="4"
+                                                                tabindex="0" class="page-link"><i class="next"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

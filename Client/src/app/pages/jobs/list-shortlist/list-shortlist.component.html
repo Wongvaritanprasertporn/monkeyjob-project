@@ -1,0 +1,169 @@
+<div id="loader" *ngIf="loading"></div>
+<app-header></app-header>
+
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    Shortlisted
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>Shortlisted</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="d2Sections manageJobPage">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d2SecBoxLeft">
+                            <div class="titleWithSideData mb-4">
+                                <div class="dBoxTitle mb-0">
+                                    <h1 class="m-0">
+                                        Shortlisted
+                                        <span *ngIf="auth.user.user_type == 1">Jobs</span>
+                                        <span *ngIf="auth.user.user_type == 2">Candidates</span>
+                                    </h1>
+                                </div>
+                                <!-- <div class="titleRightSide">
+                                    <div class="contactPage">
+                                        <select class="form-select" id="pnjTeamSize"
+                                            aria-label="Default select example">
+                                            <option selected="">General Labour</option>
+                                            <option value="1">General Labour 1</option>
+                                            <option value="2">General Labour 2</option>
+                                            <option value="3">General Labour 3</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="jobListing">
+                                <div class="table-responsive" *ngIf="applications.length">
+                                    <table class="table table-borderless swDataTable allApplicationsPage">
+                                        <!-- <thead>
+                                            <tr>
+                                                <th scope="col"><span class="colorLT">General Labour (Warehouse &amp;
+                                                        Shipping)</span></th>
+                                                <th scope="col">Total: 8</th>
+                                                <th scope="col"><span class="colorActive">Shortlist: 4</span></th>
+                                            </tr>
+                                        </thead> -->
+                                        <tbody>
+                                            <tr *ngFor="let application of applications">
+                                                <td>
+                                                    <div class="draBoxInner">
+                                                        <div class="drabImg">
+                                                            <img src="assets/images/raIcon.png">
+                                                        </div>
+                                                        <div class="mjpNameA">
+                                                            <div class="drabData1">
+                                                                <div class="raName">
+                                                                    {{ application.jobs[0].title }}
+                                                                </div>
+                                                                <div class="raDataBtm">
+                                                                    <span></span>
+                                                                    <span><i class="fas fa-map-marker-alt"></i>
+                                                                        {{application.jobs[0].address }},
+                                                                        {{
+                                                                        application.jobs[0].zip_code }}</span>
+                                                                    <span><i class="fas fa-money-bill-wave"></i>
+                                                                        {{currency}}{{application.jobs[0].starting_salary
+                                                                        }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="da2btnset">
+                                                    <div class="swAdminBtn mr-3">
+                                                        <a 
+                                                        class="swButton darkBtn"
+                                                        routerLink="/jobs/applicant/{{application.applied_by_user_id}}"
+                                                        *ngIf="auth.user.user_type == 2">
+                                                            View Profile
+                                                        </a>
+                                                    </div>
+                                                    <div class="swAdminBtn mr-3">
+                                                        <a 
+                                                        class="swButton lightBtn"
+                                                        routerLink="/jobs/messages/{{application.posted_by_user_id}}"
+                                                        *ngIf="auth.user.user_type == 1">
+                                                            Send message
+                                                        </a>
+
+                                                        <a 
+                                                        class="swButton lightBtn"
+                                                        routerLink="/jobs/messages/{{application.applied_by_user_id}}"
+                                                        *ngIf="auth.user.user_type == 2">
+                                                            Send message
+                                                        </a>
+                                                    </div>
+                                                    <div class="swAdminBtn">
+                                                        <a class="swButton darkBtn"
+                                                            routerLink="/jobs/job/{{application.jobs[0]._id}}">
+                                                            View Job
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mjpActionBtn" *ngIf="application.status == 1">
+                                                        <div class="drabData3">
+                                                            <div class="drabAction">
+                                                                <button
+                                                                    (click)="updateApplicationsStatus(application, 2)"
+                                                                    type="button" class="btn btn-secondary"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Shortlist">
+                                                                    <i class="fas fa-check"></i>
+                                                                </button>
+                                                                <button
+                                                                    (click)="updateApplicationsStatus(application, 3)"
+                                                                    type="button" class="btn btn-secondary"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Reject">
+                                                                    <i class="far fa-times-circle"></i>
+                                                                </button>
+                                                                <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                                            <i class="far fa-trash-alt"></i>
+                                                                        </button>                                                         -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- <div class="tablePagination">
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination justify-content-center">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link">Previous</a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+
+    </div>

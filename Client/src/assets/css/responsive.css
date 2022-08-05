@@ -1,0 +1,171 @@
+
+
+
+@media (min-width : 767px) and (max-width : 1024px){
+	
+	
+	
+	.midContent.loginPage .col-md-6 {
+    width: 80%;
+}
+}
+
+
+@media (max-width : 1024px){
+	
+	.findJobBox .findJobBtn {
+    width: 126px !important;
+}
+
+.mainHeader h1 {
+    font-size: 35px;
+}
+
+.amRight img {
+    width: 100%;
+}
+
+.img-fluid {
+    width: 100%;
+}
+
+}
+
+
+
+
+@media (max-width : 991px){
+	.findJobBox .findJobBtn {
+    width: 96px !important;
+}
+
+.focFeaturesBox p {
+    font-size: 12px;
+}
+
+
+.pjcBoxData h2 {
+    text-overflow: ellipsis;
+    display: block;
+    word-break: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.fjbTagsList span {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.searchAppSec h1 {
+    line-height: 48px;
+}
+
+.sacButton a {
+    font-size: 13px;
+}
+
+
+.yourDreamJobs {
+    background: url(../images/yourDreamJobs.png) no-repeat scroll 360% 100% #1ccce8;
+}
+
+.yourDreamJobsInner {
+    max-width: 60%;
+}
+
+.yourDreamJobs h1 {
+    font-size: 32px;
+}
+
+
+
+.recruitingSec {
+    background: url(../images/recruitingImg.png) no-repeat scroll 318% 100% #1ccce8;
+}
+
+}
+
+
+
+
+
+@media (max-width : 767px){
+	
+	.mainJobSearchSec .findJobBox {
+    margin-top: 0;
+}
+
+.aboutMission .amLeft {
+    padding-right: 0;
+}
+
+.swTabs li {
+    margin-bottom: 30px;
+    display: inline-block;
+}
+	
+	.findJobBtn {
+    width: 290px;
+}
+	
+	.midTitle h2 {
+    font-size: 27px;
+}
+	
+	.recruitingSecInner {
+    max-width: 100%;
+}
+	
+	.mainPageTitle h1 {
+    font-size: 30px;
+}
+	
+	
+	.mhLeft {
+    text-align: center;
+}
+
+.mainHeader h1 {
+    font-size: 25px;
+}
+
+
+
+
+.findJobBox .findJobBtn {
+    width: 100% !important;
+}
+
+.findJobBox {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.mainHeader h4 {
+    font-size: 15px;
+}
+	
+	
+	.findJobBox {
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+.mainHeader .mhLeft {
+    text-align: center;
+}
+
+.yourDreamJobsInner {
+    max-width: 100%;
+}
+
+.aboutMission .amRight {
+    margin-top: 30px;
+}
+	
+	
+	
+}
+

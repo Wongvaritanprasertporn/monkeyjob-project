@@ -1,0 +1,113 @@
+<div id="loader" *ngIf="loading"></div>
+<app-header></app-header>
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    Posted Jobs
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>Manage Jobs</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="d2Sections manageJobPage">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d2SecBoxLeft">
+                            <div class="dBoxTitle">
+                                <h1>Manage Jobs</h1>
+                            </div>
+                            <div class="jobListing">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless swDataTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let job of jobs">
+                                                <td>
+                                                    <div class="mjpNameA">
+                                                        <div class="drabData1">
+                                                            <div class="raName">
+                                                                {{job.title}}
+                                                            </div>
+                                                            <div class="raDataBtm">
+                                                                <span><i class="fas fa-map-marker-alt"></i>
+                                                                    {{job.address}}, {{job.zip_code}}
+                                                                </span>
+                                                                <span><i class="fas fa-money-bill-wave"></i>
+                                                                    {{currency}}{{job.starting_salary}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div [class]="job.status == 1 ? 'colorActive' : 'colorInactive'">
+                                                        {{job.status == 1 ? 'Active' : 'Inactive'}}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mjpActionBtn">
+                                                        <div class="drabData3">
+                                                            <div class="drabAction">
+                                                                <pre>
+                                                                        </pre>
+                                                                <button routerLink="/jobs/job/{{job._id}}" type="button"
+                                                                    class="btn btn-secondary" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top" title="Action">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </button>
+                                                                <button routerLink="/jobs/create/{{job._id}}"
+                                                                    type="button" class="btn btn-secondary"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Edit">
+                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                </button>
+                                                                <!-- <button (click)="confirmDelete(job)" type="button"
+                                                class="btn btn-secondary" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Delete">
+                                                <i class="far fa-trash-alt"></i>
+                                                </button> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- <div class="tablePagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>

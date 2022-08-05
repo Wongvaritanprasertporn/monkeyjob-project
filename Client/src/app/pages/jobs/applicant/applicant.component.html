@@ -1,0 +1,84 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+
+<div class="dashboardMid">
+    <div class="dmLeftSide">
+        <div class="candidateProfileSidebar">
+            <div class="cpButton">
+                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> Back To Applicants</a>
+            </div>
+            <div class="cpProfileImage">
+                <!-- <img src="assets/images/cpPhoto.png" class="img-fluid"> -->
+            </div>
+            <div class="cpProfileName">
+                <h1>{{ user.name }}</h1>
+            </div>
+            <ul class="cpProfileInfo">
+                <li><i class="far fa-envelope"></i> {{ user.email }}</li>
+                <li *ngIf="user.phone"><i class="fa fa-phone"></i> {{ user.phone }}</li>
+                <li routerLink="/jobs/messages/{{user.id}}"><i class="fa fa-comment"></i> Send message</li>
+                
+                <!-- <li><i class="fas fa-map-marker-alt"></i> {{ user.address }}</li> -->
+                <!-- <li><i class="fas fa-briefcase"></i> General Helper</li> -->
+            </ul>
+            
+            <div class="cpButtonBtm" *ngIf="user.resume">
+                <a class="swButton lightBtn" href="javascript:;" (click)="downloadResume()"> Download Resume</a>
+            </div>
+        </div>
+    </div>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    Professional Summary
+                </div>
+            </div>
+            <div class="cpProfileRightinfo">
+                <p>
+                    {{ user.summary }}
+                </p>
+            </div>
+            <div class="dInnerHead mt-5">
+                <div class="diTitle">
+                    Work Experience
+                </div>
+            </div>
+            <div class="resumeDesign">
+                <div class="rdTitle">
+                    {{ user.works ? user.works : "No work experience" }}
+                </div>
+                <!-- <div class="rdData">
+                    <div class="rddLeft">
+                        <span><i class="far fa-building"></i> Loring Tarcore Labs Ltd</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Calgary, AB</span>
+                    </div>
+                    <div class="rddRight">
+                        <span><i class="far fa-clock"></i> 20 Dec, 2021</span>
+                    </div>
+                </div> -->
+            </div>
+            <div class="dInnerHead mt-5">
+                <div class="diTitle">
+                    Education
+                </div>
+            </div>
+            <div class="resumeDesign">
+                <div class="rdTitle">
+                    {{ user.educations ? user.educations : "No Educations" }}
+                </div>
+                <!-- <div class="rdData">
+                    <div class="rddLeft">
+                        <span><i class="far fa-building"></i> Loring Tarcore Labs Ltd</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Calgary, AB</span>
+                    </div>
+                    <div class="rddRight">
+                        <span><i class="far fa-clock"></i> 20 Dec, 2021</span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

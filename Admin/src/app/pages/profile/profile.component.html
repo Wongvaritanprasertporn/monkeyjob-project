@@ -1,0 +1,162 @@
+<div class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+    style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <div class="d-flex flex-column flex-root">
+        <div class="page d-flex flex-row flex-column-fluid">
+            <app-leftmenu></app-leftmenu>
+            <div class="wrapper d-flex flex-column flex-row-fluid">
+                <app-header></app-header>
+                <div class="content d-flex flex-column flex-column-fluid">
+                    <div class="toolbar">
+                        <div class="container-fluid d-flex flex-stack">
+                            <div class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Settings</h1>
+                                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post d-flex flex-column-fluid">
+                        <div class="container-xxl">
+                            <div class="card mb-5 mb-xl-10">
+                                <div class="card-header border-0 cursor-pointer">
+                                    <div class="card-title m-0">
+                                        <h3 class="fw-bolder m-0">
+                                            <span *ngIf="auth.user.login_method != 'Email'"> Login Method -
+                                                {{auth.user.login_method}}</span>
+                                            <span *ngIf="auth.user.login_method == 'Email'"> Login Method - Email &
+                                                Password</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="collapse show">
+                                    <form class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                                        novalidate="novalidate" [formGroup]="form" (submit)="submit()">
+                                        <div class="card-body border-top p-9">
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Full
+                                                    Name</label>
+                                                <div class="col-lg-8">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                                            <input type="text"
+                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                placeholder="Name" formControlName="name" name="name">
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+
+                                                                <div
+                                                                    *ngIf="form.controls.name.touched && form.controls.name.hasError('required')">
+                                                                    Name is required
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="form.controls.name.dirty && form.controls.name.errors">
+                                                                    Invalid Name
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">Email</label>
+                                                <div class="col-lg-8">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                                            <input type="email"
+                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                placeholder="Email" formControlName="email" name="email"
+                                                                [readonly]="auth.user.login_method == 'Apple' || auth.user.login_method == 'Google'">
+
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div
+                                                                    *ngIf="form.controls.email.touched && form.controls.email.hasError('required')">
+                                                                    Email is required
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="form.controls.email.dirty && form.controls.email.errors">
+                                                                    Invalid email
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">Company</label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <input type="text" name="company"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        placeholder="Company name" formControlName="company"
+                                                        name="company">
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div
+                                                            *ngIf="form.controls.company.touched && form.controls.company.hasError('required')">
+                                                            Company is required
+                                                        </div>
+                                                        <div
+                                                            *ngIf="form.controls.company.dirty && form.controls.company.errors">
+                                                            Invalid Company
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6">
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                    <span class="required">Contact Phone</span>
+                                                </label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <input type="tel"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        placeholder="Phone number" formControlName="phone" name="phone"
+                                                        [readonly]="auth.user.login_method == 'Phone'">
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div
+                                                            *ngIf="form.controls.phone.touched && form.controls.phone.hasError('required')">
+                                                            Phone is required
+                                                        </div>
+                                                        <div
+                                                            *ngIf="form.controls.phone.dirty && form.controls.phone.errors">
+                                                            Invalid Phone
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-6" *ngIf="auth.user.login_method == 'Email'">
+                                                <label class="col-lg-4 col-form-label  fw-bold fs-6">Two-Factor</label>
+                                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                    <select class="form-control form-control-lg form-control-solid"
+                                                        formControlName="is_2factor_auth_enabled"
+                                                        name="is_2factor_auth_enabled">
+                                                        <option value="1">Enable</option>
+                                                        <option value="0">Disabled</option>
+                                                    </select>
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div
+                                                            *ngIf="form.controls.is_2factor_auth_enabled.touched && form.controls.is_2factor_auth_enabled.hasError('required')">
+                                                            Required
+                                                        </div>
+                                                        <div
+                                                            *ngIf="form.controls.is_2factor_auth_enabled.dirty && form.controls.is_2factor_auth_enabled.errors">
+                                                            Required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                            <button type="submit" class="btn btn-primary" [disabled]="loading">
+                                                <span *ngIf="!loading">Submit</span>
+                                                <span *ngIf="loading">Please wait..</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-footer></app-footer>
+            </div>
+        </div>
+    </div>
+</div>

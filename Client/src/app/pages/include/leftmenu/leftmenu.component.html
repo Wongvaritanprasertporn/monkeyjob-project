@@ -1,0 +1,97 @@
+<div class="dmLeftSide">
+  <aside class="bd-aside sticky-top">
+    <nav class="small" id="toc">
+      <ul class="list-unstyled sideBarSW">
+        <li class="my-2">
+          <a routerLink="/dashboard" class="sideBarTitle btn d-inline-flex align-items-center"><i
+              class="fas fa-columns"></i>
+            Dashboard</a>
+        </li>
+        <li class="my-2">
+          <a class="sideBarTitle btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse"
+            aria-expanded="false" data-bs-target="#forms-collapse" aria-controls="forms-collapse"><i
+              class="fas fa-users"></i> Jobs <i class="iconRight fa fa-angle-down"></i></a>
+          <ul [class]="menu ? 'list-unstyled ps-3 collapse show' : 'list-unstyled ps-3 collapse'" id="forms-collapse">
+            <li *ngIf="auth.user.user_type == 2">
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/create">
+                <div class="dsiImg"><img src="./assets/images/dsi1.png" /></div>
+                Post A Job
+              </a>
+            </li>
+            <li *ngIf="auth.user.user_type == 2">
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/list">
+                <div class="dsiImg"><img src="./assets/images/dsi2.png" /></div>
+                Posted Jobs
+              </a>
+            </li>
+            <li *ngIf="auth.user.user_type == 2">
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/applications">
+                <div class="dsiImg"><img src="./assets/images/dsi3.png" /></div>
+                Applications
+              </a>
+            </li>
+            <li *ngIf="auth.user.user_type == 1">
+              <a class="d-inline-flex align-items-center rounded" routerLink="/search">
+                <div class="dsiImg"><img src="./assets/images/dsi4.png" /></div>
+                Search Jobs
+              </a>
+            </li>
+            <li>
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/shortlist">
+                <div class="dsiImg">
+                  <img src="./assets/images/dsi4.png" />
+                </div>
+                Shortlist Jobs
+              </a>
+            </li>
+            <li *ngIf="auth.user.user_type == 1">
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/applied">
+                <div class="dsiImg"><img src="./assets/images/dsi4.png" /></div>
+                Applied Jobs
+              </a>
+            </li>
+            <li>
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/messages">
+                <div class="dsiImg"><img src="./assets/images/dsi5.png" /></div>
+                Messages
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="my-2">
+          <a class="sideBarTitle btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse"
+            aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse"><i
+              class="fas fa-cog"></i> Settings <i class="iconRight fa fa-angle-down"></i></a>
+          <ul [class]="menu2 ? 'list-unstyled ps-3 collapse show' : 'list-unstyled ps-3 collapse'"
+            id="components-collapse">
+            <li>
+              <a [routerLink]="auth.user.user_type == 1 ? '/account' : '/profile'"
+                class="d-inline-flex align-items-center rounded">
+                <div class="dsiImg"><img src="./assets/images/dsi6.png" /></div>
+                Profile
+              </a>
+            </li>
+            <li *ngIf="auth.user.user_type == 1">
+              <a routerLink="/uploads" class="d-inline-flex align-items-center rounded">
+                <div class="dsiImg"><img src="./assets/images/dsi6.png" /></div>
+                Update Resume
+              </a>
+            </li>
+            <li *ngIf="auth.user.login_method == 'Email'">
+              <a routerLink="/password" class="d-inline-flex align-items-center rounded">
+                <div class="dsiImg"><img src="./assets/images/dsi7.png" /></div>
+                Change Password
+              </a>
+            </li>
+            <li>
+              <a routerLink="/logout" class="d-inline-flex align-items-center rounded" href="javascript:;">
+                <div class="dsiImg"><img src="./assets/images/dsi8.png" /></div>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+</div>

@@ -1,0 +1,57 @@
+<div id="loader" *ngIf="loading"></div>
+
+<div class="mainHeaderInner loginPages">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <div class="mainPageTitle">
+          <h1>Update Resume</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="midContent loginPage">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="loginPagesBox">
+          <div class="swTabs">
+            <div class="row">
+              <div class="col-8">
+                <label class="btn btn-default p-0">
+                  <input type="file" (change)="selectFile($event)" />
+                </label>
+              </div>
+              <div class="col-12">
+              <button type="submit" class="swButton darkBtn mt-3 loginButton" [disabled]="!selectedFiles"
+                (click)="upload()">
+                Submit
+              </button>
+              </div>
+            </div>
+            <div *ngIf="currentFile" class="progress my-3">
+              <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{ width: progress + '%' }">
+                {{ progress }}%
+              </div>
+            </div>
+            <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+          </div>
+          <div class="loginFormBtmSec" *ngIf="auth.user.resume">
+            <div class="haveAccount">
+              <a href="javascript:;" (click)="downloadResume()">Download Current Resume.</a>
+            </div>
+          </div>
+          <div class="loginFormBtmSec" *ngIf="auth.user.resume">
+            <div class="haveAccount">
+              <a routerLink="/dashboard">Skip</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
