@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/auth/login/login.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
+import { EmployeeRegisterComponent } from "./pages/auth/employee-register/employee-register.component";
+import { BusinessRegisterComponent } from './pages/auth/business-register/business-register.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { PhoneComponent } from './pages/auth/phone/phone.component';
 import { LogoutComponent } from './pages/auth/logout/logout.component';
@@ -33,7 +34,8 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register/business', component: BusinessRegisterComponent},
+  { path: 'register/employee', component: EmployeeRegisterComponent},
   { path: 'login', component: LoginComponent },
   { path: 'auth/phone', component: PhoneComponent },
   { path: 'auth/phone/:phone', component: PhoneComponent },
@@ -54,7 +56,6 @@ const routes: Routes = [
   {
     path: 'info',
     component: InfoComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'password',

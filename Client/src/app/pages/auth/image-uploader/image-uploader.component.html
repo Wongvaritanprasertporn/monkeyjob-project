@@ -1,0 +1,7 @@
+<div class="text-center image rounded-circle" [ngStyle]="this.getResponsiveStyle()" #imageShow>
+    <label for="fileUpload" class="image-upload round-circle">
+        <i class="fa fa-light fa-camera fa-2xl" style="color: white"></i>
+    </label>
+    <input type="file" (change)="uploadFile()" class="form-control" #fileUpload id="fileUpload" name="fileUpload"
+        accept="image/*" />
+</div>

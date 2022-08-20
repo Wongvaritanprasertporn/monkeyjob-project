@@ -13,7 +13,9 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 
-import { RegisterComponent } from './pages/auth/register/register.component';
+import { EmployeeRegisterComponent } from './pages/auth/employee-register/employee-register.component';
+import { BusinessRegisterComponent } from './pages/auth/business-register/business-register.component';
+
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { PhoneComponent } from './pages/auth/phone/phone.component';
 
@@ -50,6 +52,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { Header2Component } from './pages/include/header2/header2.component';
 import { Footer2Component } from './pages/include/footer2/footer2.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ImageUploaderComponent } from './pages/auth/image-uploader/image-uploader.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,7 @@ import { HomeComponent } from './pages/home/home.component';
     NotfoundComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent,
+    EmployeeRegisterComponent,
     ForgotPasswordComponent,
     PhoneComponent,
     LogoutComponent,
@@ -85,7 +88,9 @@ import { HomeComponent } from './pages/home/home.component';
     SearchComponent,
     Header2Component,
     Footer2Component,
-    HomeComponent
+    HomeComponent,
+    BusinessRegisterComponent,
+    ImageUploaderComponent,
   ],
   imports: [
     BrowserModule,

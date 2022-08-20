@@ -1,0 +1,30 @@
+.image-upload {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    transition: all 1s ease;
+}
+
+
+.image {
+    background-color: gray;
+    background-size: cover;
+    height: 10vmin;
+    width: 10vmin;
+    line-height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-upload:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+#fileUpload {
+    visibility: hidden;
+}

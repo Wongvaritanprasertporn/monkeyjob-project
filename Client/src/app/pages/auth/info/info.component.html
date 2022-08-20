@@ -25,29 +25,8 @@
                 </button>
               </li>
             </ul>
-            <form class="contactPage" [formGroup]="form" (submit)="submit()">
+            <form class="contactPage" (submit)="submit()">
               <div class="row">
-                <div class="col-md-12 mb-3">
-                  <label for="logUserName" class="form-label">Name <span class="error">*</span></label>
-                  <input type="text" class="form-control" id="logUserName" placeholder="Enter Name"
-                    formControlName="name" name="name" />
-                  <div class="error">
-                    <div *ngIf="form.controls.name.touched && form.controls.name.hasError('required')">
-                      Name is required
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 mb-3" [hidden]="user_type == 1">
-                  <label for="logUseruser_type" class="form-label">Company <span class="error">*</span></label>
-                  <input type="text" class="form-control" placeholder="Enter company name" formControlName="company"
-                    name="company" />
-                  <div class="error">
-                    <div *ngIf="form.controls.company.touched && form.controls.company.hasError('required')">
-                      Company is required
-                    </div>
-                  </div>
-                </div>
-
                 <div class="col-md-12">
                 <button type="submit" class="swButton darkBtn mt-3 loginButton" [disabled]="loading">
                   <span *ngIf="!loading">Continue as {{fun.getUserTypeTitle(api.user_types,user_type)}}</span>
