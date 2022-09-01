@@ -50,14 +50,14 @@ export class RegisterComponent implements OnInit {
   register() {
     this.loading = true;
     this.api.post_('auth/register/admin', this.form.value)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.auth.setLogin(response);
         this.navigate();
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   google(data: any) {
@@ -66,14 +66,14 @@ export class RegisterComponent implements OnInit {
       name: data.name,
       email: data.email
     })
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.auth.setLogin(response);
         this.navigate();
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   navigate() {

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class InfoComponent implements OnInit {
   loading: boolean | undefined;
-  user_type = 1;
+  user_type: number = 1;
   constructor(
     public api: ApiService,
     public fun: FunctionsService,
@@ -62,6 +62,7 @@ export class InfoComponent implements OnInit {
 
   getUserType(e: any) {
     this.user_type = e;
+    console.log(e)
   }
 
 }

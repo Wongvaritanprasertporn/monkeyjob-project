@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   user: any = {
     name: "",
+    surname: "",
     email: "",
     login_method: "",
     company: "",

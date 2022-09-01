@@ -1,9 +1,18 @@
 const validator = require('validator');
 
-module.exports = mongoose => {
+const userSchema = module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
+      profile_img: {
+        type: String,
+      },
+      business: {
+        type: String,
+      },
       name: {
+        type: String,
+      },
+      surname: {
         type: String,
       },
       email: {
@@ -18,15 +27,18 @@ module.exports = mongoose => {
       phone: {
         type: String,
       },
+      telephone: {
+        type: String,
+      },
+      dob: {
+        type: String,
+      },
       password: {
         type: String
       },
       user_type: {
         type: String,
         enum: [1, 2],  // 1 - Student, 2 - Business
-      },
-      company: {
-        type: String,
       },
       website: {
         type: String,
@@ -35,12 +47,6 @@ module.exports = mongoose => {
         type: String,
       },
       company_description: {
-        type: String,
-      },
-      country: {
-        type: String,
-      },
-      city: {
         type: String,
       },
       address: {

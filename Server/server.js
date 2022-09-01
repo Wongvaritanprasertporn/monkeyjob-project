@@ -44,6 +44,28 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome" });
 });
 
+app.get("/auth/admin", (req, res) => {
+  res.json({ message: "Welcome" });
+});
+
+app.get("/auth/register/admin", (req, res) => {
+  res.json({ message: "Welcome" });
+});
+
+app.get("/auth/register/employee", (req, res) => {
+  res.send("asfd")
+})
+
+app.get("/auth/register/business", (req, res) => {
+  res.send("asfd")
+})
+
+app.get("/auth/forgot-password/users", (req, res) => {
+  console.log(req.body)
+  res.send(req.body)
+});
+
+
 require("./app/routes/admin.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/authenticated.routes")(app);
@@ -64,7 +86,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4400;
 httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

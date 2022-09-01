@@ -26,12 +26,12 @@ export class AppComponent {
     this.api.post('auth/access-token/admin', {
       'access_token': this.auth.getAccessToken()
     })
-      .subscribe((response: any) => {
+      .subscribe({next : (response: any) => {
         this.loading = false;
         this.auth.setUser(response);
-      }, error => {
+      }, error : () => {
         this.loading = false;
         this.router.navigate(['logout']);
-      });
+      }});
   }
 }

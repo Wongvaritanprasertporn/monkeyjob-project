@@ -40,14 +40,14 @@ export class PasswordComponent implements OnInit {
   updatePassword() {
     this.loading = true;
     this.api.put('authenticated/users/password', this.form.value)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.form.reset();
         this.fun.presentAlert("Password has been updated.");
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
 }

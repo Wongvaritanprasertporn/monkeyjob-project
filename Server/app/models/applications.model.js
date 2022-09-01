@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-module.exports = mongoose => {
+const ApplicationSchema = module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
       job_id: {

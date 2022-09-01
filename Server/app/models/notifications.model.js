@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-module.exports = mongoose => {
+const NotificationSchema = module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
       title: {

@@ -1,4 +1,4 @@
-module.exports = mongoose => {
+const TokenSchema = module.exports = mongoose => {
     var schema = mongoose.Schema(
         {
             token: String,

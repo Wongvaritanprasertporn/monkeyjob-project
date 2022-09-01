@@ -53,6 +53,7 @@ import { Header2Component } from './pages/include/header2/header2.component';
 import { Footer2Component } from './pages/include/footer2/footer2.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ImageUploaderComponent } from './pages/auth/image-uploader/image-uploader.component';
+import { CarouselComponent } from './pages/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { ImageUploaderComponent } from './pages/auth/image-uploader/image-upload
     HomeComponent,
     BusinessRegisterComponent,
     ImageUploaderComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,

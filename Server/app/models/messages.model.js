@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-module.exports = mongoose => {
+const MessagesSchema = module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
       from_user_id: {
