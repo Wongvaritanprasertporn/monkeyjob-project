@@ -1,0 +1,52 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    Select the post type
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>Post A Job</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboardWhiteBox">
+                <div class="swTabs">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item" *ngFor="let post_type_ of api.post_types"
+                            (click)="getUserType(post_type_.id)">
+                            <button [class]="post_type == post_type_.id ? 'nav-link active' : 'nav-link'" type="button">
+                                <div class="tabButtons">
+                                    <i class="fas fa-user-plus"></i> {{ post_type_.title }}
+                                </div>
+                            </button>
+                        </li>
+                    </ul>
+                    <form class="contactPage" (submit)="submit()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="swButton darkBtn mt-3 loginButton" [disabled]="loading">
+                                    <span *ngIf="!loading">Continue as
+                                        {{fun.getUserTypeTitle(api.post_types,post_type)}}</span>
+                                    <span *ngIf="loading">Please wait..</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

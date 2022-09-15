@@ -54,6 +54,10 @@ import { Footer2Component } from './pages/include/footer2/footer2.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ImageUploaderComponent } from './pages/auth/image-uploader/image-uploader.component';
 import { CarouselComponent } from './pages/carousel/carousel.component';
+import { FeatureJobsComponent } from './pages/feature-jobs/feature-jobs.component';
+import { BannerComponent } from './pages/jobs/banner/banner.component';
+import { UrgentComponent } from './pages/jobs/urgent/urgent.component';
+import { SelectPostTypeComponent } from './pages/jobs/select-post-type/select-post-type.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +97,10 @@ import { CarouselComponent } from './pages/carousel/carousel.component';
     BusinessRegisterComponent,
     ImageUploaderComponent,
     CarouselComponent,
+    FeatureJobsComponent,
+    BannerComponent,
+    UrgentComponent,
+    SelectPostTypeComponent,
   ],
   imports: [
     BrowserModule,

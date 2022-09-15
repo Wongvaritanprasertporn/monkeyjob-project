@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true;
     this.api.post_('auth/users', this.form.value)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
+        console.log(response.user)
         this.loading = false;
         if (response.is_2factor_auth_enabled) {
           this.action = 2;
@@ -74,10 +75,10 @@ export class LoginComponent implements OnInit {
           this.auth.setLogin(response);
           this.navigate();
         }
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   _2factor() {
@@ -86,14 +87,14 @@ export class LoginComponent implements OnInit {
       email: this.form.value.email,
       token: this._2form.value.token
     })
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.auth.setLogin(response);
         this.navigate();
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   google(data: any) {
@@ -102,15 +103,15 @@ export class LoginComponent implements OnInit {
       name: data.name,
       email: data.email
     })
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.auth.setLogin(response);
         this.navigate();
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
         this.authService.signOut();
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   signInWithGoogle(): void {
@@ -118,6 +119,7 @@ export class LoginComponent implements OnInit {
   }
 
   navigate() {
+    console.log(this.auth.user.user_type)
     if (this.auth.user.user_type) {
       this.router.navigateByUrl('/dashboard');
     } else {

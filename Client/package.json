@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "bootstrap": "^5.2.1",
     "jquery": "^3.6.0",
     "ngx-toastr": "^14.3.0",
     "rxjs": "~7.5.0",

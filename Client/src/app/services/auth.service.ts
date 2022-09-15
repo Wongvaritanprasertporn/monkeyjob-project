@@ -10,7 +10,8 @@ export class AuthService {
     email: "",
     login_method: "",
     company: "",
-    user_type: ""
+    user_type: "",
+    profile_img: ""
   }
   is_login = false;
   constructor() {

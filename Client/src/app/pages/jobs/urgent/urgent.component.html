@@ -1,0 +1,90 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        < class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    {{ !urgent.id ? 'Post A New Job' : 'Edit Job' }}
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>{{ !urgent.id ? 'Post A Job' : 'Edit Job' }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboardWhiteBox">
+                <div class="dBoxTitle">
+                    <h1>General Information</h1>
+                </div>
+                <div class="formBox">
+                    <form [formGroup]="form" (submit)="submit()" class="contactPage">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="pnjJobTitle" class="form-label">Job Title <span
+                                        class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="title" name="title"
+                                    placeholder="Job Title">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.title.touched && form.controls.title.hasError('required')">
+                                        Title is required
+                                    </div>
+                                    <div *ngIf="form.controls.title.dirty && form.controls.title.errors">
+                                        Invalid Title
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="pnjJobDescription" class="form-label">Job Description <span
+                                        class="error">*</span></label>
+                                <textarea rows="5" class="form-control" formControlName="description" name="description"
+                                    placeholder="Write your job description"></textarea>
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.description.touched && form.controls.description.hasError('required')">
+                                        Job Description is required
+                                    </div>
+                                    <div *ngIf="form.controls.description.dirty && form.controls.description.errors">
+                                        Invalid Job Description
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="pnjJobTitle" class="form-label">Job Title <span
+                                        class="error">*</span></label>
+                                <input type="text" class="form-control" formControlName="banner" name="banner"
+                                    placeholder="Job Title">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.banner.touched && form.controls.banner.hasError('required')">
+                                        Title is required
+                                    </div>
+                                    <div *ngIf="form.controls.banner.dirty && form.controls.banner.errors">
+                                        Invalid Title
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row adminFromBtn">
+                                <div class="col-md-12 text-center">
+                                    <button [disabled]="loading" type="submit"
+                                        class="swButton darkBtn mt-3 loginButton">
+                                        <span *ngIf="!loading">Submit</span>
+                                        <span *ngIf="loading">Please wait..</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <app-footer></app-footer>
+</div>

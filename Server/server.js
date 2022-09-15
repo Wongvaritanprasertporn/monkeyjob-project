@@ -65,6 +65,9 @@ app.get("/auth/forgot-password/users", (req, res) => {
   res.send(req.body)
 });
 
+app.get("/storage/:filename", (req, res) => {
+  res.sendFile("/app/storage/" + req.params.filename)
+})
 
 require("./app/routes/admin.routes")(app);
 require("./app/routes/auth.routes")(app);

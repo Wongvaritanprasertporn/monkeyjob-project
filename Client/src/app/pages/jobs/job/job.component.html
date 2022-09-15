@@ -23,40 +23,34 @@
             </div>
             <div class="diTitleSubDA">
                 <a routerLink="/company/{{job.user_id}}">
-                    <!-- Riverside Recycling Ltd. <span>(Manufacturing)</span> -->
+                    Riverside Recycling Ltd. <span>(Manufacturing)</span>
                 </a>
             </div>
             <div class="jdaFeatures">
                 <div class="raDataBtm">
                     <span><i class="fas fa-user"></i> Age {{ job.minimum_age }} - {{ job.maximum_age }} Years</span>
                     <!-- <span><i class="fas fa-money-bill-wave"></i> $19 an hour</span> -->
-                    <span><i class="fas fa-map-marker-alt"></i> {{ job.address }}, {{ job.zip_code }}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> {{ user }}, {{ job.user_id }}</span>
                 </div>
             </div>
             <div class="diTitle">
                 Job Description
             </div>
             <div class="daJobDiscription">
+                <p>Starting Salary: {{currency}} {{job.salary}}</p>
                 <br />
-                <p>Job Industry: {{job.industry}}</p>
-                <br />
-                <p>Starting Salary: {{currency}} {{job.starting_salary}}</p>
-<br />
                 <p>Job Type: {{job.type}}</p>
                 <br>
                 <!-- <p>Language: English</p>
                 <p>Minimum Education: None</p> -->
                 <p>Positions Available: {{job.positions}}</p>
-                <br>
-                <p>Priority: {{job.priority}}</p>
-                <br>
+
                 <!-- <p>NOC Group: Landscaping and Grounds Maintenance Labourers (8612)</p>
                 <p>NOC Job Title: Worker, Landscape</p> -->
                 <p>Posted: {{ job.createdAt  | date:'fullDate' }}</p>
                 <p>Last Updated: {{ job.updatedAt  | date:'fullDate' }}</p>
                 <br>
                 <strong>Location</strong>
-                <p>{{job.address}} {{ job.zip_code }}</p>
                 <br>
                 <strong>Description</strong>
                 <p>

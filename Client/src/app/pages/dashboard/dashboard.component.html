@@ -7,6 +7,9 @@
   <div class="dmRightSide">
     <div class="dmRightSideInner">
       <div class="dInnerHead">
+        <div col-md-3 mb-3>
+          <img src="http://localhost:3000/storage/{{auth.user.profile_img}}">
+        </div>
         <div class="diTitle">
           Welcome, {{ auth.user.name ? auth.user.name : auth.user.phone }}
         </div>

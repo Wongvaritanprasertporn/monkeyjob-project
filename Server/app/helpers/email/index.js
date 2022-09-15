@@ -34,7 +34,7 @@ function sendMail(fn, data) {
 }
 
 exports.forgotPassword = function forgotPassword(fn, data) {
-  if (!data.email) {
+  if (!data) {
     fn({
       status: false,
       message: "To email is required.",

@@ -30,6 +30,7 @@ import { UploadsComponent } from './pages/uploads/uploads.component';
 import { SearchComponent } from './pages/search/search.component';
 
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { SelectPostTypeComponent } from './pages/jobs/select-post-type/select-post-type.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -83,8 +84,33 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'jobs/banner/create',
+    component: CreateJobsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jobs/banner/create/:job_id',
+    component: CreateJobsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jobs/urgent/create',
+    component: CreateJobsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jobs/urgent/create/:job_id',
+    component: CreateJobsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'jobs/list',
     component: ListJobsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jobs/select',
+    component: SelectPostTypeComponent,
     canActivate: [AuthGuard]
   },
   {

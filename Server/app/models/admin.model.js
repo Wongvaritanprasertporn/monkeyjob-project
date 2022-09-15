@@ -18,12 +18,6 @@ const AdminSchema = module.exports = mongoose => {
       password: {
         type: String
       },
-      company: {
-        type: String,
-      },
-      phone: {
-        type: String,
-      },
       is_active: {
         type: Number,
         enum: [1, 0],

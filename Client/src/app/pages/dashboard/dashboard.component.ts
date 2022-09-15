@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   loading: boolean | undefined;
   applications: any = [];
   currency = environment.currency;
+
   counts = {
     jobs : 0,
     applications : 0,

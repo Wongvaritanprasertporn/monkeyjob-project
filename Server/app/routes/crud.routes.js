@@ -12,6 +12,7 @@ module.exports = app => {
   router.get("/:document/:id", crud.find);
   router.delete("/:document/:id", crud.delete);
   router.delete("/:document/", crud.deleteAll);
+  router.get("/get_user/:_id/", crud.getUser)
 
   app.use("/crud/", auth, router);
 

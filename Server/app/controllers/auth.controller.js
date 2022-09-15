@@ -7,59 +7,62 @@ const saltRounds = 10;
 
 const db = require("../models");
 const { json } = require("body-parser");
+const { users } = require("../models");
 
 exports.loginAuth = async (req, res) => {
   try {
-    if (!req.body.data.email || !req.body.data.password) {
+    if (!req.body.email || !req.body.password) {
       res.status(400).send({
         message: "Email & Password required.",
       });
       return;
     }
 
-    var condition = {
-      email: req.body.data.email,
-    };
+    const data = await db.users.find({
+      email: req.body.email,
+    });
 
-    const data = await db.users.find(condition);
     if (!data) {
       res.status(400).send({
         message: `Incorrect email or password`,
       });
     } else {
-      if (data.login_method != "Email") {
+      if (data[0].login_method != "Email") {
         res.status(400).send({
           message: `Please use ${data.login_method} method.`,
         });
         return;
       }
 
-      if (!data.is_active) {
+      if (!data[0].is_active) {
         res.status(400).send({
           message: `Account is not active. Contact admin`,
         });
         return;
       }
 
-      const match = await bcrypt.compare(req.body.password, data.password);
+      const match = await bcrypt.compare(req.body.password, data[0].password);
       if (match) {
-        if (data.is_2factor_auth_enabled && data.email) {
-          req.body.token = Math.floor(1000 + Math.random() * 9000);
+        if (data[0].is_2factor_auth_enabled && data[0].email) {
+          const randToken = Math.floor(1000 + Math.random() * 9000);
 
-          mail._2FactorAuth(function (e) {}, req.body);
+          mail._2FactorAuth(function (e) {}, {
+            token: randToken,
+            email: req.body[0],
+          });
 
           const tokens = new db["tokens"](req.body);
           await tokens.save(tokens);
 
           res.send({
-            is_2factor_auth_enabled: data.is_2factor_auth_enabled,
-            email: data.email,
+            is_2factor_auth_enabled: data[0].is_2factor_auth_enabled,
+            email: data[0].email,
           });
         } else {
           res.send({
-            access_token: jwt.accessTokenEncode(data),
-            refresh_token: jwt.refreshTokenEncode(data),
-            user: data,
+            access_token: jwt.accessTokenEncode(data[0]),
+            refresh_token: jwt.refreshTokenEncode(data[0]),
+            user: data[0],
           });
         }
       } else {
@@ -78,67 +81,113 @@ exports.loginAuth = async (req, res) => {
 
 exports.createAuth = async (req, res) => {
   try {
-    const user = await db.users.find({
-      email: req.body.data.email,
-    });
+    if (req.params.document == "users") {
 
-    console.log(req.body.logo);
-
-    if (user == []) {
-      res.status(400).send({
-        message: "Email already in use.",
-        login_method: user.login_method,
+      const user = await db.users.find({
+        email: req.body.data.email,
       });
-    } else {
-      req.body.login_method = "Email";
-      req.body._2factor_auth_type = "Email";
 
-      bcrypt.hash(req.body.password, saltRounds, async function (error, hash) {
-        req.body.password = hash;
-        let users = [];
-        if (req.body.user_type == 1) {
-          users = new db.users({
-            profile_img: req.body.logo,
-            user_type: req.body.user_type,
-            business: req.body.data.business,
-            name: req.body.data.name,
-            surname: req.body.data.surname,
-            email: req.body.data.email,
-            address: req.body.data.address,
-            telephone: req.body.data.tel,
-            company_description: req.body.data.description,
-            password: req.body.data.password,
-            login_method: "Email",
-            _2factor_auth_type: "Email",
-          });
-        } else {
-          users = new db.users({
-            profile_img: req.body.logo,
-            user_type: req.body.user_type,
-            name: req.body.data.name,
-            surname: req.body.data.surname,
-            email: req.body.data.email,
-            address: req.body.data.address,
-            phone: req.body.data.phone,
-            telephone: req.body.data.tel,
-            dob: req.body.data.dob,
-            address: req.body.data.address,
-            summary: req.body.data.record,
-            resume: req.body.data.introduce,
-            password: req.body.data.password,
-            login_method: "Email",
-            _2factor_auth_type: "Email",
-          });
-        }
+      console.log(req.body.logo);
 
-        const data = await users.save(users);
-
-        res.send({
-          access_token: jwt.accessTokenEncode(data),
-          refresh_token: jwt.refreshTokenEncode(data),
-          user: data,
+      if (user == []) {
+        res.status(400).send({
+          message: "Email already in use.",
+          login_method: user.login_method,
         });
+      } else {
+        req.body.login_method = "Email";
+        req.body._2factor_auth_type = "Email";
+
+        bcrypt.hash(
+          req.body.password,
+          saltRounds,
+          async function (error, hash) {
+            req.body.data.password = hash;
+            let users = [];
+            if (req.body.data.user_type == 1) {
+              users = new db.users({
+                profile_img: req.body.logo,
+                user_type: 1,
+                business: req.body.data.business,
+                name: req.body.data.name,
+                surname: req.body.data.surname,
+                email: req.body.data.email,
+                address: req.body.data.address,
+                telephone: req.body.data.tel,
+                company_description: req.body.data.description,
+                password: req.body.data.password,
+                login_method: "Email",
+                _2factor_auth_type: "Email",
+              });
+            } else {
+              users = new db.users({
+                profile_img: req.body.logo,
+                user_type: 2,
+                name: req.body.data.name,
+                surname: req.body.data.surname,
+                email: req.body.data.email,
+                address: req.body.data.address,
+                phone: req.body.data.phone,
+                telephone: req.body.data.tel,
+                dob: req.body.data.dob,
+                address: req.body.data.address,
+                summary: req.body.data.record,
+                resume: req.body.data.introduce,
+                password: req.body.data.password,
+                login_method: "Email",
+                _2factor_auth_type: "Email",
+              });
+            }
+
+            const data = await users.save(users);
+
+            res.send({
+              access_token: jwt.accessTokenEncode(data),
+              refresh_token: jwt.refreshTokenEncode(data),
+              user: data,
+            });
+          }
+        );
+      }
+    } else if (req.params.document == "admin") {
+      const user = await db["admin"].find({
+        email: req.body.email,
       });
+
+      console.log(req.body)
+
+      if (user == []) {
+        res.status(400).send({
+          message: "Email already in use.",
+        });
+      } else {
+
+        bcrypt.hash(
+          req.body.password,
+          saltRounds,
+          async function (error, hash) {
+            req.body.password = hash;
+            let admin = [];
+
+            admin = new db.admin({
+              name: req.body.name,
+              email: req.body.email,
+              password: req.body.password,
+              login_method: "Email",
+              is_2factor_auth_enabled: 1,
+              _2factor_auth_type: "Email",
+            });
+
+            const data = await admin.save(admin);
+
+            res.send({
+              access_token: jwt.accessTokenEncode(data),
+              refresh_token: jwt.refreshTokenEncode(data),
+              user: data,
+            });
+          }
+        );
+      }
     }
   } catch (error) {
     res.status(500).send({
@@ -203,18 +252,16 @@ exports.refreshToken = async (req, res) => {
 
 exports.forgotPassword = async (req, res) => {
   try {
-    if (!req.body.email) {
+    if (!req.body) {
       res.status(400).send({
         message: "Email required.",
       });
       return;
     }
 
-    var condition = {
-      email: req.body.email,
-    };
-
-    const data = await db.users.find(condition);
+    const data = await db.users.find({
+      email: req.body[0],
+    });
 
     if (!data) {
       res.status(400).send({
@@ -236,27 +283,36 @@ exports.forgotPassword = async (req, res) => {
       }
 
       if (data[0].login_method == "Email") {
-        req.body.token = Math.floor(1000 + Math.random() * 9000);
-        console.log(req.body);
-        mail.forgotPassword(async function (e) {
-          if (e.status) {
-            const tokens = new db.tokens(req.body);
-            await tokens.save(tokens);
-            res.send({
-              message: "Verification code has been sent.",
-              email: req.body.email,
-            });
-          } else {
-            res.status(401).send({
-              message: e.message,
-            });
-          }
-        }, req.body);
+        const randToken = Math.floor(1000 + Math.random() * 9000);
+        console.log(req.body + " " + randToken);
+        mail.forgotPassword(
+          async function (e) {
+            if (e.status) {
+              const tokens = new db.tokens({
+                token: randToken,
+                email: req.body[0],
+              });
+              await tokens.save(tokens);
+              res.send({
+                message: "Verification code has been sent.",
+                email: req.body[0],
+              });
+            } else {
+              res.status(401).send({
+                message: e.message,
+              });
+            }
+          },
+          { token: randToken, email: req.body[0] }
+        );
       }
     }
   } catch (error) {
     res.status(500).send({
       message: error.message,
+    });
+    res.status(400).send({
+      message: error.message + " " + req.body,
     });
   }
 };

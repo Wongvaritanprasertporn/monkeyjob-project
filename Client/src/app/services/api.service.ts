@@ -20,6 +20,21 @@ export class ApiService {
             title : 'Employer'
         }
     ];
+
+    post_types = [
+        {
+            id : 1,
+            title : 'Jobs'
+        },
+        {
+            id : 2,
+            title : 'Banner'
+        },
+        {
+            id : 3,
+            title : 'Urgent'
+        }
+    ];
     constructor(
         private http: HttpClient,
     ) {

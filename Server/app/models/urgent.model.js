@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-const JobsSchema = module.exports = mongoose => {
+const UrgentSchema = module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
       user_id: {
@@ -11,24 +11,11 @@ const JobsSchema = module.exports = mongoose => {
         type: String,
         required: [true, 'required'],
       },
-      minimum_age: {
-        type: String,
-        required: [true, 'required'],
-      },
-      maximum_age: {
-        type: String,
-        required: [true, 'required'],
-      },
-      type: {
-        type: String,
-        enum: ['Full Time', 'Part Time'],
-        required: [true, 'required'],
-      },
-      salary: {
-        type: String,
-        required: [true, 'required'],
-      },
       description: {
+        type: String,
+        required: [true, 'required'],
+      },
+      banner: {
         type: String,
         required: [true, 'required'],
       },
@@ -47,5 +34,5 @@ const JobsSchema = module.exports = mongoose => {
     return object;
   });
 
-  return mongoose.model("jobs", schema);
+  return mongoose.model("urgent", schema);
 };

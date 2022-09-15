@@ -10,11 +10,11 @@
         <div class="diBreadcrumb">
           <div class="mainPageBreadCrumb">
             <ul>
-              <li><a routerLink="/dashboard">Dashboard</a></li>
+              <li><a routerLink="/dashboard">หน้ากระดาน</a></li>
               <li>
                 <a><i class="fas fa-angle-double-right"></i></a>
               </li>
-              <li><a>Profile</a></li>
+              <li><a>โปรไฟล์</a></li>
             </ul>
           </div>
         </div>
@@ -22,7 +22,7 @@
       <form [formGroup]="form" (submit)="submit()">
         <div class="dashboardWhiteBox">
           <div class="dBoxTitle">
-            <h1>My Profile</h1>
+            <h1>โปรไฟล์ส่วนตัว</h1>
           </div>
           <div class="formBox">
             <!-- <div class="fbUpload">
@@ -38,214 +38,96 @@
             <div class="contactPage">
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label class="form-label"
-                    >Name <span class="error">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter name"
-                    formControlName="name"
-                    name="name"
-                  />
+                  <label class="form-label">ชื่อ <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter name" formControlName="name" name="name" />
                   <div class="error">
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         form.controls.name.touched &&
                         form.controls.name.hasError('required')
-                      "
-                    >
-                      Field is required
+                      ">
+                      ต้องการชื่อ
                     </div>
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         form.controls.name.dirty && form.controls.name.errors
-                      "
-                    >
-                      Invalid Field
+                      ">
+                      ใส่ชื่อไม่ถูกต้อง
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label class="form-label"
-                    >Email Address <span class="error">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter email"
-                    formControlName="email"
-                    name="email"
+                  <label class="form-label">อีเมล <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="Enter email" formControlName="email" name="email"
                     [readonly]="
                       auth.user.login_method == 'Google' ||
                       auth.user.login_method == 'Apple'
-                    "
-                  />
+                    " />
                   <div class="error">
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         form.controls.email.touched &&
                         form.controls.email.hasError('required')
-                      "
-                    >
-                      Email is required
+                      ">
+                      ต้องการอีเมล
                     </div>
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         form.controls.email.dirty && form.controls.email.errors
-                      "
-                    >
-                      Invalid email
+                      ">
+                      ใส่อีเมลไม่ถูกต้อง
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <label class="form-label"
-                    >Phone <span class="error">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Phone"
-                    formControlName="phone"
-                    name="phone"
-                  />
+                  <label class="form-label">โทรศัพท์ <span class="error">*</span></label>
+                  <input type="text" class="form-control" placeholder="" formControlName="phone"
+                    name="phone" />
                   <div class="error">
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         form.controls.phone.touched &&
                         form.controls.phone.hasError('required')
-                      "
-                    >
-                      Phone is required
+                      ">
+                      ต้องการหมายเลขโทรศัพท์
                     </div>
-                    <div
-                      *ngIf="
+                    <div *ngIf="
                         form.controls.phone.dirty && form.controls.phone.errors
-                      "
-                    >
-                      Invalid Phone
+                      ">
+                      ใส่หมายเลขโทรศัพท์ไม่ถูกต้อง
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dashboardWhiteBox mt-4">
-          <div class="dBoxTitle">
-            <h1>Working History</h1>
-          </div>
-          <div class="formBox">
-            <div class="contactPage">
-              <div class="row">
-                <div class="col-md-12">
-                  <label class="form-label"
-                    >Working History <span class="error">*</span></label
-                  >
-                  <textarea
-                    rows="5"
-                    class="form-control"
-                    placeholder="works"
-                    formControlName="works"
-                    name="works"
-                  ></textarea>
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">บทแนะนำตนเอง <span class="error">*</span></label>
+                  <textarea rows="5" class="form-control" placeholder="works" formControlName="works"
+                    name="works"></textarea>
                   <div class="error">
-                    <div
-                      *ngIf="
-                        form.controls.works.touched &&
-                        form.controls.works.hasError('required')
-                      "
-                    >
-                      Field is required
+                    <div *ngIf="
+                          form.controls.works.touched &&
+                          form.controls.works.hasError('required')
+                        ">
+                      ต้องการให้แนะนำตนเอง
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dashboardWhiteBox mt-4">
-          <div class="dBoxTitle">
-            <h1>Education</h1>
-          </div>
-          <div class="formBox">
-            <div class="contactPage">
-              <div class="row">
-                <div class="col-md-12">
-                  <label class="form-label"
-                    >Educations <span class="error">*</span></label
-                  >
-                  <textarea
-                    rows="5"
-                    class="form-control"
-                    placeholder="educations"
-                    formControlName="educations"
-                    name="educations"
-                  ></textarea>
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">ประวัติการศึกษา การทำงาน หรือการฝึกอบรม <span class="error">*</span></label>
+                  <textarea rows="5" class="form-control" placeholder="Summary" formControlName="record"
+                    name="summary"></textarea>
                   <div class="error">
-                    <div
-                      *ngIf="
-                        form.controls.educations.touched &&
-                        form.controls.educations.hasError('required')
-                      "
-                    >
-                      Field is required
+                    <div *ngIf="
+                          form.controls.summary.touched &&
+                          form.controls.summary.hasError('required')
+                        ">
+                      ต้องการประวัติ
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="dashboardWhiteBox mt-4">
-          <div class="dBoxTitle">
-            <h1>Professional Summary</h1>
-          </div>
-          <div class="formBox">
-            <div class="contactPage">
-              <div class="row">
-                <div class="col-md-12">
-                  <label class="form-label"
-                    >Add Summary <span class="error">*</span></label
-                  >
-                  <textarea
-                    rows="5"
-                    class="form-control"
-                    placeholder="Summary"
-                    formControlName="summary"
-                    name="summary"
-                  ></textarea>
-                  <div class="error">
-                    <div
-                      *ngIf="
-                        form.controls.summary.touched &&
-                        form.controls.summary.hasError('required')
-                      "
-                    >
-                      Field is required
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dashboardWhiteBox mt-4">
-          <!-- <div class="dBoxTitle">
-                                            <h1>Social Network</h1>
-                                        </div> -->
-          <div class="formBox">
+
             <div class="contactPage">
               <div class="row adminFromBtn">
                 <div class="col-md-12 text-center">
-                  <button
-                    type="submit"
-                    class="swButton darkBtn mt-3 loginButton"
-                    [disabled]="loading"
-                  >
-                    <span *ngIf="!loading">Save Information</span>
-                    <span *ngIf="loading">Please wait..</span>
+                  <button type="submit" class="swButton darkBtn mt-3 loginButton" [disabled]="loading">
+                    <span *ngIf="!loading">บันทึกข้อมูล</span>
+                    <span *ngIf="loading">กรุณารอสักครู่ ...</span>
                   </button>
                 </div>
               </div>
@@ -256,4 +138,3 @@
     </div>
     <app-footer></app-footer>
   </div>
-</div>

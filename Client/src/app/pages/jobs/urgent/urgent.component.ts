@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../../../services/api.service';
-import { FunctionsService } from '../../../services/functions.service';
-import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ValidationService } from 'src/app/services/validation.service';
-import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { FunctionsService } from 'src/app/services/functions.service';
 
 @Component({
-  selector: 'app-create-jobs',
-  templateUrl: './create-jobs.component.html',
-  styleUrls: ['./create-jobs.component.css']
+  selector: 'app-urgent',
+  templateUrl: './urgent.component.html',
+  styleUrls: ['./urgent.component.css']
 })
-export class CreateJobsComponent implements OnInit {
+export class UrgentComponent implements OnInit {
   form: any;
   loading: boolean | undefined;
-  job: any = {
+  urgent: any = {
     id: "",
     title: ""
   };
@@ -31,13 +29,10 @@ export class CreateJobsComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      minimum_age: ['', [Validators.required, Validators.min(1)]],
-      maximum_age: ['', [Validators.required, Validators.min(1)]],
-      salary: ['', [Validators.required, Validators.min(1)]],
-      type: ['', [Validators.required, Validators.min(1)]],
-      description: ['', Validators.required]
-    });
+      title: ['', [Validators.required]],
+      description: ['', Validators.required],
+      banner: ['', [Validators.required]]
+    })
 
     if (this.activatedRoute.snapshot.paramMap.get('job_id')) {
       this.getJob(this.activatedRoute.snapshot.paramMap.get('job_id'));
@@ -46,7 +41,7 @@ export class CreateJobsComponent implements OnInit {
 
   submit() {
     if (this.form.dirty && this.form.valid) {
-      if (!this.job.id) {
+      if (!this.urgent.id) {
         this.save();
       } else {
         this.update();
@@ -63,14 +58,12 @@ export class CreateJobsComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.loading = false;
-          this.job = response;
+          this.urgent = response;
 
-          this.form.get('title').setValue(this.job.title);
-          this.form.get('minimum_age').setValue(this.job.minimum_age);
-          this.form.get('salary').setValue(this.job.salary);
-          this.form.get('description').setValue(this.job.description);
-          this.form.get('type').setValue(this.job.type);
-          this.form.get('maximum_age').setValue(this.job.maximum_age);
+          this.form.get('title').setValue(this.urgent.title);
+          this.form.get('description').setValue(this.urgent.description);
+          this.form.get('banner').setValue(this.urgent.salary);
+
           this.form.markAsDirty();
 
         }, error: (e) => {
@@ -97,7 +90,7 @@ export class CreateJobsComponent implements OnInit {
 
   update() {
     this.loading = true;
-    this.api.put(`crud/jobs/${this.job.id}`, this.form.value)
+    this.api.put(`crud/jobs/${this.urgent.id}`, this.form.value)
       .subscribe({
         next: (response: any) => {
           this.loading = false;
@@ -108,5 +101,4 @@ export class CreateJobsComponent implements OnInit {
         }
       });
   }
-
 }

@@ -13,7 +13,7 @@
               class="fas fa-users"></i> Jobs <i class="iconRight fa fa-angle-down"></i></a>
           <ul [class]="menu ? 'list-unstyled ps-3 collapse show' : 'list-unstyled ps-3 collapse'" id="forms-collapse">
             <li *ngIf="auth.user.user_type == 2">
-              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/create">
+              <a class="d-inline-flex align-items-center rounded" routerLink="/jobs/select">
                 <div class="dsiImg"><img src="./assets/images/dsi1.png" /></div>
                 Post A Job
               </a>

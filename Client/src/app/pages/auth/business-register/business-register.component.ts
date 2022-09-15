@@ -52,7 +52,7 @@ export class BusinessRegisterComponent implements OnInit {
       address: ['', [Validators.required]],
       tel: ['', [Validators.required, Validators.minLength(9)]],
       description: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)]],
       conPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
 

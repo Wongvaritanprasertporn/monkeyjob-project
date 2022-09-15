@@ -148,17 +148,25 @@
                     </div>
                   </div>
                   <div class="small">
-                    <div><span class="correct"
-                        *ngIf="form.value['password'].length >= 8">&#x2713;</span>รหัสผ่านต้องมีตัวอักขระอย่างน้อง 8 ตัว
+                    <div>
+                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].length >= 8"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].length < 8"></i>
+                      รหัสผ่านต้องมีตัวอักขระอย่างน้อง 8 ตัว
                     </div>
-                    <div><span class="correct"
-                        *ngIf="form.value['password'].search(regex_small_az) != -1 && form.value['password'].search(regex_cap_az) != -1">&#x2713;</span>รหัสผ่านต้องมีตัวอักษรตัวพิมพ์เล็ก
-                      และตัวพิมพ์ใหญ่ประกอบ</div>
-                    <div><span class="correct"
-                        *ngIf="form.value['password'].search(regex_num) != -1">&#x2713;</span>รหัสผ่านต้องมีตัวเลขประกอบ
+                    <div>
+                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].search(regex_small_az) != -1 && form.value['password'].search(regex_cap_az) != -1"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].search(regex_small_az) == -1 || form.value['password'].search(regex_cap_az) == -1"></i>
+                      รหัสผ่านต้องมีตัวอักษรตัวพิมพ์เล็กและตัวพิมพ์ใหญ่ประกอบ
                     </div>
-                    <div><span class="correct"
-                        *ngIf="form.value['password'].search(regex_char) != -1">&#x2713;</span>รหัสผ่านต้องมีสัญลักษณ์พิเศษประกอบ
+                    <div>
+                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].search(regex_num) != -1"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].search(regex_num) == -1"></i>
+                      รหัสผ่านต้องมีตัวเลขประกอบ
+                    </div>
+                    <div>
+                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].search(regex_char) != -1"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].search(regex_char) == -1"></i>
+                      รหัสผ่านต้องมีสัญลักษณ์พิเศษประกอบ
                     </div>
                   </div>
                 </div>

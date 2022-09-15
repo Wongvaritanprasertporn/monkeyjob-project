@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, Form } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { FunctionsService } from '../../../services/functions.service';
 import { AuthService } from '../../../services/auth.service';
@@ -13,10 +13,10 @@ import { ValidationService } from 'src/app/services/validation.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  regex_char: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
-  regex_small_az: RegExp = /[a-z]/
-  regex_cap_az: RegExp = /[A-Z]/
-  regex_num: RegExp = /[0-9]/
+  hasUpperCase = false;
+  hasLowerCase = false;
+  hasNumeric = false;
+  hasChar = false;
 
   form: any;
   pwdForm: any;
@@ -41,11 +41,22 @@ export class ForgotPasswordComponent implements OnInit {
     });
 
     this.pwdForm = this.formBuilder.group({
-      email: ['', [Validators.required, ValidationService.emailValidator]],
-      password: ['', [Validators.minLength(8), Validators.required]],
+      password: ['', [Validators.minLength(8), Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/),]],
       conPassword: ['', [Validators.minLength(8), Validators.required]],
       token: ['', [Validators.required]]
     });
+  }
+
+  passwordValidation(password: any) {
+    const hasUpperCase = /[A-Z]+/.test(password)
+    const hasLowerCase = /[a-z]+/.test(password)
+    const hasNumeric = /[0-9]+/.test(password)
+    const hasChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password)
+
+    this.hasUpperCase = hasUpperCase
+    this.hasLowerCase = hasLowerCase
+    this.hasNumeric = hasNumeric
+    this.hasChar = hasChar
   }
 
   makeid() {
@@ -64,22 +75,21 @@ export class ForgotPasswordComponent implements OnInit {
         this.sendToken();
       } else {
         for (let i in this.form.controls)
-        this.form.controls[i].markAsTouched();
+          this.form.controls[i].markAsTouched();
       }
     } else {
       if (this.pwdForm.dirty && this.pwdForm.valid) {
-        this.pwdForm["email"].value = this.form["email"].value;
         this.login();
       } else {
         for (let i in this.pwdForm.controls)
-        this.pwdForm.controls[i].markAsTouched();
+          this.pwdForm.controls[i].markAsTouched();
       }
     }
   }
 
   sendToken() {
     this.loading = true;
-    this.api.post_('auth/forgot-password/users', this.form.value)
+    this.api.post_('auth/forgot-password/users', [this.form.value.email])
       .subscribe({
         next: (response: any) => {
           this.loading = false;
@@ -94,7 +104,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.api.post_('auth/reset-password/users', this.pwdForm.value)
+    this.api.post_('auth/reset-password/users', { email: this.form.value['email'], password: this.pwdForm.value['password'], token: this.pwdForm.value['token'] })
       .subscribe({
         next: (response: any) => {
           this.loading = false;
