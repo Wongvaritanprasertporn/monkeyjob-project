@@ -11,6 +11,10 @@ const JobsSchema = module.exports = mongoose => {
         type: String,
         required: [true, 'required'],
       },
+      email: {
+        type: String,
+        required: [true, 'required'],
+      },
       minimum_age: {
         type: String,
         required: [true, 'required'],
@@ -25,6 +29,10 @@ const JobsSchema = module.exports = mongoose => {
         required: [true, 'required'],
       },
       salary: {
+        type: String,
+        required: [true, 'required'],
+      },
+      city: {
         type: String,
         required: [true, 'required'],
       },

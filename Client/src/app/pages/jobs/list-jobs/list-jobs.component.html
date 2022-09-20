@@ -6,14 +6,14 @@
         <div class="dmRightSideInner">
             <div class="dInnerHead">
                 <div class="diTitle">
-                    Posted Jobs
+                    งานที่โพสต์
                 </div>
                 <div class="diBreadcrumb">
                     <div class="mainPageBreadCrumb">
                         <ul>
-                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a routerLink="/dashboard">หน้ากระดาน</a></li>
                             <li><a><i class="fas fa-angle-double-right"></i></a></li>
-                            <li><a>Manage Jobs</a></li>
+                            <li><a>จัดการงาน</a></li>
                         </ul>
                     </div>
                 </div>
@@ -23,16 +23,16 @@
                     <div class="col-md-12">
                         <div class="d2SecBoxLeft">
                             <div class="dBoxTitle">
-                                <h1>Manage Jobs</h1>
+                                <h1>จัดการงาน</h1>
                             </div>
                             <div class="jobListing">
                                 <div class="table-responsive">
                                     <table class="table table-borderless swDataTable">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Action</th>
+                                                <th scope="col">หัวเรื่อง</th>
+                                                <th scope="col">สถานะ</th>
+                                                <th scope="col">ดำเนินการ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -44,11 +44,8 @@
                                                                 {{job.title}}
                                                             </div>
                                                             <div class="raDataBtm">
-                                                                <span><i class="fas fa-map-marker-alt"></i>
-                                                                    {{job.address}}, {{job.zip_code}}
-                                                                </span>
                                                                 <span><i class="fas fa-money-bill-wave"></i>
-                                                                    {{currency}}{{job.starting_salary}}</span>
+                                                                    {{job.salary}}</span>
                                                             </div>
                                                         </div>
                                                     </div>

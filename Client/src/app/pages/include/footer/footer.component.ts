@@ -8,7 +8,10 @@ import { environment } from 'src/environments/environment';
 })
 export class FooterComponent implements OnInit {
   title = environment.title;
-  constructor() { }
+  d = new Date();
+  year = this.d.getFullYear();
+
+  constructor(  ) { }
 
   ngOnInit(): void {
   }

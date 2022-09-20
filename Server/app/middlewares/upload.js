@@ -20,6 +20,15 @@ let ProfileImageStorage = multer.diskStorage({
   },
 });
 
+let BannerImageStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, __basedir + "/app/storage/banner_img/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
 let uploadFile = multer({
   storage: resumeStorage,
   limits: { fileSize: maxSize },

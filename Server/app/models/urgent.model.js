@@ -11,6 +11,10 @@ const UrgentSchema = module.exports = mongoose => {
         type: String,
         required: [true, 'required'],
       },
+      bound: {
+        type: String,
+        required: [true, 'required'],
+      },
       description: {
         type: String,
         required: [true, 'required'],

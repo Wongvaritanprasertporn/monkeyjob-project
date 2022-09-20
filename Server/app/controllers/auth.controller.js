@@ -18,9 +18,17 @@ exports.loginAuth = async (req, res) => {
       return;
     }
 
-    const data = await db.users.find({
-      email: req.body.email,
-    });
+    let data = null;
+
+    if (req.params.document == "users") {
+      data = await db.users.find({
+        email: req.body.email,
+      });
+    } else if (req.params.document == "admin") {
+      data = await db.admin.find({
+        email: req.body.email,
+      });
+    }
 
     if (!data) {
       res.status(400).send({
@@ -82,7 +90,6 @@ exports.loginAuth = async (req, res) => {
 exports.createAuth = async (req, res) => {
   try {
     if (req.params.document == "users") {
-
       const user = await db.users.find({
         email: req.body.data.email,
       });
@@ -113,6 +120,7 @@ exports.createAuth = async (req, res) => {
                 surname: req.body.data.surname,
                 email: req.body.data.email,
                 address: req.body.data.address,
+                city: req.body.data.city,
                 telephone: req.body.data.tel,
                 company_description: req.body.data.description,
                 password: req.body.data.password,
@@ -154,14 +162,13 @@ exports.createAuth = async (req, res) => {
         email: req.body.email,
       });
 
-      console.log(req.body)
+      console.log(req.body);
 
       if (user == []) {
         res.status(400).send({
           message: "Email already in use.",
         });
       } else {
-
         bcrypt.hash(
           req.body.password,
           saltRounds,

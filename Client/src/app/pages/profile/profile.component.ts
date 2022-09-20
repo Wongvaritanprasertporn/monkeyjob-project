@@ -25,19 +25,15 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      company: ['', [Validators.required]],
+      business: ['', [Validators.required]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
       phone: ['', [Validators.required]],
-      website: ['', [Validators.required]],
-      team_size: ['', [Validators.required]],
-      company_description: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-      city: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       address: ['', [Validators.required]]
     });
 
-    if (this.auth.user.company) {
-      this.form.get('company').setValue(this.auth.user.company);
+    if (this.auth.user.business) {
+      this.form.get('business').setValue(this.auth.user.business);
     }
     if (this.auth.user.email) {
       this.form.get('email').setValue(this.auth.user.email);
@@ -45,20 +41,8 @@ export class ProfileComponent implements OnInit {
     if (this.auth.user.phone) {
       this.form.get('phone').setValue(this.auth.user.phone);
     }
-    if (this.auth.user.website) {
-      this.form.get('website').setValue(this.auth.user.website);
-    }
-    if (this.auth.user.team_size) {
-      this.form.get('team_size').setValue(this.auth.user.team_size);
-    }
     if (this.auth.user.company_description) {
-      this.form.get('company_description').setValue(this.auth.user.company_description);
-    }
-    if (this.auth.user.country) {
-      this.form.get('country').setValue(this.auth.user.country);
-    }
-    if (this.auth.user.city) {
-      this.form.get('city').setValue(this.auth.user.city);
+      this.form.get('description').setValue(this.auth.user.company_description);
     }
     if (this.auth.user.address) {
       this.form.get('address').setValue(this.auth.user.address);
@@ -78,12 +62,12 @@ export class ProfileComponent implements OnInit {
   update() {
     this.loading = true;
     this.api.put(`authenticated/users`, this.form.value)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.fun.presentAlert('Profile has been updated.');
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 }

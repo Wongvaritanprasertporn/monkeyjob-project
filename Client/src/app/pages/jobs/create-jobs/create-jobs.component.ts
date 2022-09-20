@@ -19,6 +19,8 @@ export class CreateJobsComponent implements OnInit {
     id: "",
     title: ""
   };
+  checkJobs: any;
+  jobsCount: number = 0;
 
   constructor(
     public api: ApiService,
@@ -32,12 +34,36 @@ export class CreateJobsComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
+      email: [''],
       minimum_age: ['', [Validators.required, Validators.min(1)]],
       maximum_age: ['', [Validators.required, Validators.min(1)]],
+      city: [''],
       salary: ['', [Validators.required, Validators.min(1)]],
       type: ['', [Validators.required, Validators.min(1)]],
       description: ['', Validators.required]
     });
+
+    this.api.get(`jobs`)
+      .subscribe({
+        next: (response: any) => {
+          this.loading = false;
+          this.checkJobs = response;
+        }, error: (e) => {
+          this.loading = false;
+          this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+        }
+      });
+
+      for (let i of this.checkJobs) {
+        this.jobsCount++
+      }
+
+      if (this.jobsCount > 1 && this.auth.user.subscription[0] == false) {
+        this.router.navigateByUrl('/subscription')
+      }
+
+    this.form.value.email = this.auth.user.email;
+    this.form.value.city = this.auth.user.city;
 
     if (this.activatedRoute.snapshot.paramMap.get('job_id')) {
       this.getJob(this.activatedRoute.snapshot.paramMap.get('job_id'));
@@ -57,6 +83,7 @@ export class CreateJobsComponent implements OnInit {
     }
   }
 
+
   getJob(job_id: any) {
     this.loading = true;
     this.api.get(`crud/jobs/${job_id}`)
@@ -66,6 +93,7 @@ export class CreateJobsComponent implements OnInit {
           this.job = response;
 
           this.form.get('title').setValue(this.job.title);
+          this.form.get('email').setValue(this.job.email)
           this.form.get('minimum_age').setValue(this.job.minimum_age);
           this.form.get('salary').setValue(this.job.salary);
           this.form.get('description').setValue(this.job.description);

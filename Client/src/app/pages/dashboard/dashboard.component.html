@@ -8,10 +8,10 @@
     <div class="dmRightSideInner">
       <div class="dInnerHead">
         <div col-md-3 mb-3>
-          <img src="http://localhost:3000/storage/{{auth.user.profile_img}}">
+          <img src="http://localhost:4400/storage/{{auth.user.profile_img}}">
         </div>
         <div class="diTitle">
-          Welcome, {{ auth.user.name ? auth.user.name : auth.user.phone }}
+          {{ auth.user.name ? auth.user.name + " " + auth.user.surname : auth.user.phone }}
         </div>
       </div>
       <ng-container *ngIf="auth.user.user_type == 1">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="d4SecBoxData">
                   <h2>{{ counts.shortlisted_applications }}</h2>
-                  <h4>Shortlisted Jobs</h4>
+                  <h4>Banner</h4>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="d4SecBoxData">
                   <h2>{{ counts.applications }}</h2>
-                  <h4>Applied Jobs</h4>
+                  <h4>Feature Jobs</h4>
                 </div>
               </div>
             </div>
@@ -129,47 +129,36 @@
       <ng-container *ngIf="auth.user.user_type == 2">
         <div class="d4Sections">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="d4SecBox bgBlue" routerLink="/jobs/list">
                 <div class="d4SecBoxImg">
                   <img src="./assets/images/d4i1.png" />
                 </div>
                 <div class="d4SecBoxData">
                   <h2>{{ counts.jobs }}</h2>
-                  <h4>Total Job Posted</h4>
+                  <h4>งานที่โพสต์</h4>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="d4SecBox bgGreen" routerLink="/jobs/list">
                 <div class="d4SecBoxImg">
                   <img src="./assets/images/d4i2.png" />
                 </div>
                 <div class="d4SecBoxData" routerLink="/jobs/applications">
                   <h2>{{ counts.applications }}</h2>
-                  <h4>Recieved Applications</h4>
+                  <h4>งานที่รับ</h4>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="d4SecBox bgYellow" routerLink="/jobs/list">
-                <div class="d4SecBoxImg">
-                  <img src="./assets/images/d4i3.png" />
-                </div>
-                <div class="d4SecBoxData" routerLink="/jobs/shortlist">
-                  <h2>{{ counts.shortlisted_applications }}</h2>
-                  <h4>Shortlist Applications</h4>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="d4SecBox bgPurple" routerLink="/jobs/list">
                 <div class="d4SecBoxImg">
                   <img src="./assets/images/d4i4.png" />
                 </div>
                 <div class="d4SecBoxData" routerLink="/jobs/messages">
                   <h2>{{ counts.messages }}</h2>
-                  <h4>Unread Message</h4>
+                  <h4>ข้อความที่ยังไม่ได้อ่าน</h4>
                 </div>
               </div>
             </div>
@@ -180,10 +169,10 @@
             <div class="col-md-12">
               <div class="d2SecBoxLeft">
                 <div class="dBoxTitle">
-                  <h1>Recent Applicants</h1>
+                  <h1>ผู้เข้าสมัครงานคนล่าสุด</h1>
                 </div>
                 <div class="draList">
-                  <small *ngIf="!applications.length">No Recent Applicants.</small>
+                  <small *ngIf="!applications.length">ไม่มี</small>
                   <div class="draBox" *ngFor="let application of applications">
                     <div class="drabImg">
                       <img src="./assets/images/raIcon.png" />

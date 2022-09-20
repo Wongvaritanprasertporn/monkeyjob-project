@@ -4,46 +4,22 @@
     <div class="row align-items-center">
       <div class="col-md-12">
         <div class="mhLeft">
-          <h1 class="text-center">Find Your Perfect Job Match...</h1>
-          <h4 class="text-center">Find Jobs, Employment &amp; Career Opportunities!</h4>
           <div class="findJobBox">
-            <form
-              class="row gx-3 gy-2 align-items-center"
-              [formGroup]="form"
-              (submit)="submit()"
-            >
-              <div class="col-sm-5 haveIcon">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="title"
-                  name="title"
-                  placeholder="Job title, Keywords, or Company"
-                />
+            <form class="row gx-3 gy-2 align-items-center" [formGroup]="form" (submit)="submit()">
+              <div class="col-sm-10 haveIcon">
+                <input type="text" class="form-control" formControlName="title" name="title"
+                  placeholder="ค้นหางานที่ใช่" />
                 <i class="fas fa-search"></i>
               </div>
-              <div class="col-sm-5 haveIcon">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="City or Postcode"
-                  formControlName="zip_code"
-                  name="zip_code"
-                />
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
               <div class="col-sm-2">
-                <button
-                  type="submit"
-                  class="findJobBtn btnDark btn btn-primary"
-                >
-                  Find Jobs
+                <button type="submit" class="findJobBtn btnDark btn btn-primary">
+                  ค้นหางาน
                 </button>
               </div>
             </form>
           </div>
           <div class="popSearchs">
-            <strong></strong> 
+            <strong></strong>
           </div>
         </div>
       </div>
@@ -52,68 +28,8 @@
 </div>
 <div class="midContent">
   <app-carousel></app-carousel>
-  <app-feature-jobs></app-feature-jobs>
-  <div class="focAboutUs">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="focAboutUsLeft">
-            <div class="focTitle">
-              <h2>How It Works?</h2>
-              <span>Job for anyone, anywhere</span>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="hiwBox">
-                  <img src="assets/images/hiw1.png" />
-                  <h2>Find Jobs In<br />Your Location</h2>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="hiwBox">
-                  <img src="assets/images/hiw2.png" />
-                  <h2>Apply On <br />The Job</h2>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="hiwBox">
-                  <img src="assets/images/hiw3.png" />
-                  <h2>Talk To Employers <br />Directly</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="focFeatures">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="focFeaturesBox fbLeft">
-            <div class="focFBDate">
-              <h3>Are You Employer?</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              <a routerLink="/login">Post A Jobs</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="focFeaturesBox fbRight">
-            <div class="focFBDate">
-              <h3>Are You Job Seeker?</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              <a routerLink="/login">Find A Jobs</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-<app-footer2></app-footer2>
+<div class="midContent">
+  <app-feature-jobs></app-feature-jobs>
+</div>
+<app-footer></app-footer>

@@ -8,113 +8,109 @@
         <div class="dmRightSideInner">
             <div class="dInnerHead">
                 <div class="diTitle">
-                    {{ !job.id ? 'Post A New Job' : 'Edit Job' }}
+                    {{ !job.id ? 'สร้างประกาศงานใหม่' : 'แก้ไขประกาศงาน' }}
                 </div>
                 <div class="diBreadcrumb">
                     <div class="mainPageBreadCrumb">
                         <ul>
-                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a routerLink="/dashboard">หน้ากระดาน</a></li>
                             <li><a><i class="fas fa-angle-double-right"></i></a></li>
-                            <li><a>{{ !job.id ? 'Post A Job' : 'Edit Job' }}</a></li>
+                            <li><a>{{ !job.id ? 'สร้างประกาศงานใหม่' : 'แก้ไขประกาศงาน' }}</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="dashboardWhiteBox">
-                <div class="dBoxTitle">
-                    <h1>General Information</h1>
-                </div>
                 <div class="formBox">
                     <form [formGroup]="form" (submit)="submit()" class="contactPage">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label for="pnjJobTitle" class="form-label">Job Title <span
+                                <label for="pnjJobTitle" class="form-label">งาน <span
                                         class="error">*</span></label>
                                 <input type="text" class="form-control" formControlName="title" name="title"
-                                    placeholder="Job Title">
+                                    placeholder="">
                                 <div class="error">
                                     <div
                                         *ngIf="form.controls.title.touched && form.controls.title.hasError('required')">
-                                        Title is required
+                                        ต้องระบุงาน
                                     </div>
                                     <div *ngIf="form.controls.title.dirty && form.controls.title.errors">
-                                        Invalid Title
+                                        ระบุงานไม่ถูกต้อง
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Salary<span class="error">*</span></label>
+                                <label class="form-label">เงินเดือน<span class="error">*</span></label>
                                 <input type="text" class="form-control" formControlName="salary" name="salary"
                                     placeholder="">
                                 <div class="error">
                                     <div
                                         *ngIf="form.controls.salary.touched && form.controls.salary.hasError('required')">
-                                        Starting Salary is required
+                                        ต้องระบุเงินเดือน
                                     </div>
                                     <div *ngIf="form.controls.salary.dirty && form.controls.salary.errors">
-                                        Invalid Starting Salary
+                                        ระบุเงินเดือนไม่ถูกต้อง
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Type <span class="error">*</span></label>
+                                <label class="form-label">ประเภท <span class="error">*</span></label>
                                 <select class="form-control" formControlName="type" name="type">
-                                    <option value="">Select Type</option>
-                                    <option value="Contract">Contract</option>
-                                    <option value="Freelance">Freelance</option>
-                                    <option value="Full Time">Full Time</option>
-                                    <option value="Internship">Internship</option>
-                                    <option value="Part Time">Part Time</option>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option value="Freelance">งานอิสระ</option>
+                                    <option value="Full Time">งานเต็มเวลา</option>
+                                    <option value="Internship">ฝึกงาน</option>
+                                    <option value="Part Time">พาร์ทไทม์</option>
                                 </select>
                                 <div class="error">
                                     <div *ngIf="form.controls.type.touched && form.controls.type.hasError('required')">
-                                        Type is required
+                                        ต้องระบุประเภท
                                     </div>
                                     <div *ngIf="form.controls.type.dirty && form.controls.type.errors">
-                                        Invalid Type
+                                        ระบุไม่ถูกต้อง
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2 mb-3">
-                                <label class="form-label">Minimum Age <span class="error">*</span></label>
+                                <label class="form-label">อายุขั้นต่ำ <span class="error">*</span></label>
                                 <input type="text" class="form-control" formControlName="minimum_age" name="minimum_age"
                                     placeholder="">
                                 <div class="error">
                                     <div
                                         *ngIf="form.controls.minimum_age.touched && form.controls.minimum_age.hasError('required')">
-                                        Priority is required
+                                        ต้องระบุอายุ
                                     </div>
                                     <div *ngIf="form.controls.minimum_age.dirty && form.controls.minimum_age.errors">
-                                        Invalid Priority
+                                        ระบุอายุไม่ถูกต้อง
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2 mb-3">
-                                <label class="form-label">Maximum Age <span class="error">*</span></label>
+                                <label class="form-label">อายุสูงสุด <span class="error">*</span></label>
                                 <input type="text" class="form-control" formControlName="maximum_age" name="maximum_age"
                                     placeholder="">
                                 <div class="error">
                                     <div
                                         *ngIf="form.controls.maximum_age.touched && form.controls.maximum_age.hasError('required')">
-                                        Priority is required
+                                        ต้องระบุอายุ
                                     </div>
                                     <div *ngIf="form.controls.maximum_age.dirty && form.controls.maximum_age.errors">
-                                        Invalid Priority
+                                        ระบุอายุไม่ถูกต้อง
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="pnjJobDescription" class="form-label">Job Description <span
+                                <label for="pnjJobDescription" class="form-label">คำอธิบายงาน <span
                                         class="error">*</span></label>
                                 <textarea rows="5" class="form-control" formControlName="description" name="description"
-                                    placeholder="Write your job description"></textarea>
+                                    placeholder=""></textarea>
                                 <div class="error">
                                     <div
                                         *ngIf="form.controls.description.touched && form.controls.description.hasError('required')">
-                                        Job Description is required
+                                        ต้องอธิบายงาน
                                     </div>
                                     <div *ngIf="form.controls.description.dirty && form.controls.description.errors">
-                                        Invalid Job Description
+                                        ข้อมูลไม่ถูกต้อง
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +118,8 @@
                                 <div class="col-md-12 text-center">
                                     <button [disabled]="loading" type="submit"
                                         class="swButton darkBtn mt-3 loginButton">
-                                        <span *ngIf="!loading">Submit</span>
-                                        <span *ngIf="loading">Please wait..</span>
+                                        <span *ngIf="!loading">ยืนยัน</span>
+                                        <span *ngIf="loading">กรุณารอสักครู่ ...</span>
                                     </button>
                                 </div>
                             </div>

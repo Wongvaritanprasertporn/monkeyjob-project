@@ -1,0 +1,61 @@
+<div id="loader" *ngIf="loading"></div>
+
+<app-header></app-header>
+
+<div class="dashboardMid">
+    <app-leftmenu></app-leftmenu>
+    <div class="dmRightSide">
+        <div class="dmRightSideInner">
+            <div class="dInnerHead">
+                <div class="diTitle">
+                    {{ !banners.id ? 'สร้างประกาศงานใหม่' : 'แก้ไขประกาศงาน' }}
+                </div>
+                <div class="diBreadcrumb">
+                    <div class="mainPageBreadCrumb">
+                        <ul>
+                            <li><a routerLink="/dashboard">หน้ากระดาน</a></li>
+                            <li><a><i class="fas fa-angle-double-right"></i></a></li>
+                            <li><a>{{ !banners.id ? 'สร้างประกาศงานใหม่' : 'แก้ไขประกาศงาน' }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboardWhiteBox">
+                <div class="formBox">
+                    <form [formGroup]="form" (submit)="submit()" class="contactPage">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="pnjJobTitle" class="form-label">ภาพ <span
+                                        class="error">*</span></label>
+                                <input type="file" class="form-control" formControlName="banner" name="banner"
+                                    placeholder="Job Title">
+                                <div class="error">
+                                    <div
+                                        *ngIf="form.controls.banner.touched && form.controls.banner.hasError('required')">
+                                        ต้องการข้อมูล
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">ผูกกับ <span class="error">*</span></label>
+                                <select class="form-control" formControlName="bound" name="bound">
+                                    <option value="">กรุณาเลือก</option>
+                                    <option value="{{banner.title}}" *ngFor="let banner of banners">{{banner.title}}</option>
+                                </select>
+                                <div class="error">
+                                    <div *ngIf="form.controls.type.touched && form.controls.type.hasError('required')">
+                                        ต้องระบุประเภท
+                                    </div>
+                                    <div *ngIf="form.controls.type.dirty && form.controls.type.errors">
+                                        ระบุไม่ถูกต้อง
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

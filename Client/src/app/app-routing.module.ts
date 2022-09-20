@@ -28,9 +28,14 @@ import { MessagesComponent } from './pages/jobs/messages/messages.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { UploadsComponent } from './pages/uploads/uploads.component';
 import { SearchComponent } from './pages/search/search.component';
+import { AddBannerComponent } from './pages/jobs/add-banner/add-banner.component';
+import { AddFeatureJobComponent } from './pages/jobs/add-feature-job/add-feature-job.component';
+import { SubscriptionComponent } from './pages/subscription/subscription.component';
 
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { SelectPostTypeComponent } from './pages/jobs/select-post-type/select-post-type.component';
+import { ListBannerComponent } from './pages/jobs/list-banner/list-banner.component';
+import { ListFeaturesComponent } from './pages/jobs/list-features/list-features.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -85,22 +90,22 @@ const routes: Routes = [
   },
   {
     path: 'jobs/banner/create',
-    component: CreateJobsComponent,
+    component: AddBannerComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'jobs/banner/create/:job_id',
-    component: CreateJobsComponent,
+    component: AddBannerComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'jobs/urgent/create',
-    component: CreateJobsComponent,
+    component: AddFeatureJobComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'jobs/urgent/create/:job_id',
-    component: CreateJobsComponent,
+    component: AddFeatureJobComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -126,6 +131,16 @@ const routes: Routes = [
   {
     path: 'jobs/applicant/:user_id',
     component: ApplicantComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'banner/list',
+    component: ListBannerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'urgent/list',
+    component: ListFeaturesComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -161,6 +176,11 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: 'subscription',
+    component: SubscriptionComponent,
+    canActivate: [AuthGuard]
   },
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '/' }

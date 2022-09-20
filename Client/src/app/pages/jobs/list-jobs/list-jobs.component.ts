@@ -28,13 +28,13 @@ export class ListJobsComponent implements OnInit {
   getJobs() {
     this.loading = true;
     this.api.get(`jobs`)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.jobs = response;
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   confirmDelete(job : any) {
@@ -49,13 +49,13 @@ export class ListJobsComponent implements OnInit {
   delete(job_id : any) {
     this.loading = true;
     this.api.delete(`crud/jobs/${job_id}`)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.getJobs();
         this.fun.presentAlert('Job has been deleted.');
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 }

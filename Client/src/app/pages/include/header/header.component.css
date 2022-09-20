@@ -1,0 +1,12 @@
+.image {
+    height: 5vmin;
+    width: 5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+#fileUpload {
+    visibility: hidden;
+}

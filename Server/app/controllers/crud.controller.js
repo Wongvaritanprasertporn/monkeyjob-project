@@ -183,7 +183,7 @@ exports.deleteAll = (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const data = await db["users"]
-      .findById(req.params._id)
+      .findById(req.params.email)
       .then((data) => {
         res.send({
           user: data,

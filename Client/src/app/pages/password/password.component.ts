@@ -11,6 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./password.component.css']
 })
 export class PasswordComponent implements OnInit {
+
+  regex_char: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
+  regex_small_az: RegExp = /[a-z]/
+  regex_cap_az: RegExp = /[A-Z]/
+  regex_num: RegExp = /[0-9]/
   form: any;
   loading: boolean | undefined;
   constructor(
@@ -24,7 +29,7 @@ export class PasswordComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       old_password: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)]]
     });
   }
 

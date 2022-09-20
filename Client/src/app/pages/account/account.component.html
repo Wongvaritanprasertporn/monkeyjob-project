@@ -95,12 +95,12 @@
                 </div>
                 <div class="col-md-12 mb-3">
                   <label class="form-label">บทแนะนำตนเอง <span class="error">*</span></label>
-                  <textarea rows="5" class="form-control" placeholder="works" formControlName="works"
-                    name="works"></textarea>
+                  <textarea rows="5" class="form-control" placeholder="" formControlName="introduce"
+                    name="introduce"></textarea>
                   <div class="error">
                     <div *ngIf="
-                          form.controls.works.touched &&
-                          form.controls.works.hasError('required')
+                          form.controls.introduce.touched &&
+                          form.controls.introduce.hasError('required')
                         ">
                       ต้องการให้แนะนำตนเอง
                     </div>
@@ -108,12 +108,12 @@
                 </div>
                 <div class="col-md-12 mb-3">
                   <label class="form-label">ประวัติการศึกษา การทำงาน หรือการฝึกอบรม <span class="error">*</span></label>
-                  <textarea rows="5" class="form-control" placeholder="Summary" formControlName="record"
-                    name="summary"></textarea>
+                  <textarea rows="5" class="form-control" placeholder="" formControlName="record"
+                    name="record"></textarea>
                   <div class="error">
                     <div *ngIf="
-                          form.controls.summary.touched &&
-                          form.controls.summary.hasError('required')
+                          form.controls.record.touched &&
+                          form.controls.record.hasError('required')
                         ">
                       ต้องการประวัติ
                     </div>

@@ -102,41 +102,41 @@ export class MessagesComponent implements OnInit {
   getUser(user_id: any) {
     this.loading = true;
     this.api.get(`crud/users/${user_id}`)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.user = response;
         this.getMessages();
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
         this.router.navigateByUrl(`/404`);
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   getMessages() {
     this.loading = true;
     this.api.get(`messages/?from_user_id=${this.auth.user.id}&to_user_id=${this.user.id}`)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.app.messageList = response.reverse();
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
   getConversation() {
     this.loading = true;
     this.api.get(`messages/users`)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.conversation = response;
         if (this.conversation.length && !this.user.id) {
           this.router.navigateByUrl(`/jobs/messages/${this.conversation[0].to_user_id}`);
         }
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 }

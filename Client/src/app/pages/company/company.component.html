@@ -5,7 +5,7 @@
     <div class="dmLeftSide">
         <div class="candidateProfileSidebar">
             <div class="cpButton">
-                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> Go Back</a>
+                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> ย้อนกลับ</a>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="mbdAfterHeader">
                         <div class="mbdProfilePhoto">
-                            <img src="assets/images/bdprofileImg.jpg">
+                            <img src="http://localhost:4400/storage/{{auth.user.profile_img}}">
                         </div>
                         <div class="mbdProfileData">
                             <h1>{{user.company}}</h1>
@@ -35,17 +35,17 @@
                             <div class="mpab1" *ngIf="user.id != auth.user.id">
                                 <a class="swButton lightBtn" routerLink="/jobs/messages/{{user.id}}">
                                     <i class="fa fa-comment-dots"></i>
-                                    Message</a>
+                                    ข้อความ</a>
                             </div>
                             <div class="mpab2">
                                 <a data-bs-toggle="modal" href="#exampleModalToggleAR" role="button"
-                                    class="swButton darkBtn">Add Review</a>
+                                    class="swButton darkBtn">เพิ่มคำติชม</a>
                                 <div class="modal fade rtjModal" id="exampleModalToggleAR" aria-hidden="true"
                                     aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content contactPage">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalToggleLabel">Add A Review</h5>
+                                                <h5 class="modal-title" id="exampleModalToggleLabel">เพิ่มคำติชม</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -81,19 +81,19 @@
                                                         <div class="applyThisJobMBTextarea mb-0">
                                                             <div class="">
                                                                 <label for="atjAdditionalInformation"
-                                                                    class="form-label">Your Review</label>
+                                                                    class="form-label">คำติชม</label>
                                                                 <input class="form-control mb-3"
-                                                                    placeholder="Write a headline for your review...">
+                                                                    placeholder="หัวข้อ">
                                                                 <textarea rows="3" class="form-control"
                                                                     id="atjAdditionalInformation"
-                                                                    placeholder="Write your review here..."></textarea>
+                                                                    placeholder="คำบรรยาย"></textarea>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="swButton lightBtn">Submit</button>
+                                                <button class="swButton lightBtn">ส่ง</button>
                                             </div>
                                         </div>
                                     </div>
@@ -106,14 +106,13 @@
                             <div class="col-md-8">
                                 <div class="bdMidLeft">
                                     <h1 class="colorLight">
-                                        About The Company
+                                        เกี่ยวกับธุรกิจ
                                     </h1>
                                     <p>
                                         {{user.company_description}}
                                     </p>
                                     <a data-bs-toggle="modal" href="#exampleModalToggle" role="button"
-                                        class="swButton lightFlotBtn"><i class="fas fa-flag"></i> &nbsp;Report This
-                                        Business</a>
+                                        class="swButton lightFlotBtn"><i class="fas fa-flag"></i> &nbsp;แจ้งร้องเรียน</a>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -126,7 +125,7 @@
                                                 </div>
                                                 <div class="atcData">
                                                     <div class="atcdTitle">
-                                                        Email
+                                                        อีเมล
                                                     </div>
                                                     <div class="atcdValue">
                                                         {{user.email}}
@@ -139,7 +138,7 @@
                                                 </div>
                                                 <div class="atcData">
                                                     <div class="atcdTitle">
-                                                        Phone
+                                                        โทรศัพท์
                                                     </div>
                                                     <div class="atcdValue">
                                                         {{user.phone}}
@@ -152,23 +151,10 @@
                                                 </div>
                                                 <div class="atcData">
                                                     <div class="atcdTitle">
-                                                        Website
+                                                        เว็บไซต์
                                                     </div>
                                                     <div class="atcdValue">
                                                         {{user.website}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="atcRightBox">
-                                                <div class="atcIcon">
-                                                    <i class="fas fa-users"></i>
-                                                </div>
-                                                <div class="atcData">
-                                                    <div class="atcdTitle">
-                                                        Team size
-                                                    </div>
-                                                    <div class="atcdValue">
-                                                        {{user.team_size}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,7 +168,6 @@
                                                     </div>
                                                     <div class="atcdValue">
                                                         {{user.address}},
-                                                        {{user.zip_code}} 
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,136 +201,12 @@
 
                         <div class="bddSep"></div>
 
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="bdMidLeft">
-                                    <h1 class="colorLight">
-                                        Reviews
-                                    </h1>
-
-                                    <div class="mlReviewList">
-                                        <div class="mlRBox">
-                                            <div class="draBox">
-                                                <div class="drabImg">
-                                                    <img src="assets/images/raIcon.png">
-                                                </div>
-                                                <div class="drabData">
-                                                    <div class="drabData1">
-                                                        <div class="raName">
-                                                            Darlene Robertson
-                                                        </div>
-                                                        <div class="raDataBtm d-flex">
-                                                            4.5
-                                                            <div class="stiStars">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star-half"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="reviewText">
-                                                <strong>Fast paced &amp; organized</strong>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                    ea
-                                                    commodo consequat.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mlRBox">
-                                            <div class="draBox">
-                                                <div class="drabImg">
-                                                    <img src="assets/images/raIcon.png">
-                                                </div>
-                                                <div class="drabData">
-                                                    <div class="drabData1">
-                                                        <div class="raName">
-                                                            Leslie Alexander
-                                                        </div>
-                                                        <div class="raDataBtm d-flex">
-                                                            4.5
-                                                            <div class="stiStars">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star-half"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="reviewText">
-                                                <strong>Awesome people</strong>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                    ea
-                                                    commodo consequat.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mlRBox">
-                                            <div class="draBox">
-                                                <div class="drabImg">
-                                                    <img src="assets/images/raIcon.png">
-                                                </div>
-                                                <div class="drabData">
-                                                    <div class="drabData1">
-                                                        <div class="raName">
-                                                            James Smith
-                                                        </div>
-                                                        <div class="raDataBtm d-flex">
-                                                            4.5
-                                                            <div class="stiStars">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star-half"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="reviewText">
-                                                <strong>Great company to work with</strong>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                    ea
-                                                    commodo consequat.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="bdMidLeft">
-                                    <div class="cardWhiteBox">
-                                        <div class="bdRightSide2">
-                                            <h2>What would you say about your employer?</h2>
-                                            <h3>Help fellow job seekers by sharing your unique experience.</h3>
-                                            <a data-bs-toggle="modal" href="#exampleModalToggleAR" role="button"
-                                                class="swButton darkBtn">Write A Review</a>
-                                            <img src="assets/images/Layer-2599.png" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="modal fade rtjModal" id="exampleModalToggle" aria-hidden="true"
                             aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content contactPage">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalToggleLabel">Report This Business</h5>
+                                        <h5 class="modal-title" id="exampleModalToggleLabel">แจ้งร้องเรียนธุรกิจ</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>

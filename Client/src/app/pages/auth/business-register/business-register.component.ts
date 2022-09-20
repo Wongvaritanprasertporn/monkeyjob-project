@@ -50,6 +50,7 @@ export class BusinessRegisterComponent implements OnInit {
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
       address: ['', [Validators.required]],
+      
       tel: ['', [Validators.required, Validators.minLength(9)]],
       description: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)]],
@@ -66,10 +67,6 @@ export class BusinessRegisterComponent implements OnInit {
     //     }
     //   }
     // });
-  }
-
-  retrieveImage(user: any) {
-    this.logo = user
   }
 
   submit() {

@@ -58,6 +58,11 @@ import { FeatureJobsComponent } from './pages/feature-jobs/feature-jobs.componen
 import { BannerComponent } from './pages/jobs/banner/banner.component';
 import { UrgentComponent } from './pages/jobs/urgent/urgent.component';
 import { SelectPostTypeComponent } from './pages/jobs/select-post-type/select-post-type.component';
+import { AddBannerComponent } from './pages/jobs/add-banner/add-banner.component';
+import { AddFeatureJobComponent } from './pages/jobs/add-feature-job/add-feature-job.component';
+import { ListBannerComponent } from './pages/jobs/list-banner/list-banner.component';
+import { ListFeaturesComponent } from './pages/jobs/list-features/list-features.component';
+import { SubscriptionComponent } from './pages/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +106,11 @@ import { SelectPostTypeComponent } from './pages/jobs/select-post-type/select-po
     BannerComponent,
     UrgentComponent,
     SelectPostTypeComponent,
+    AddBannerComponent,
+    AddFeatureJobComponent,
+    ListBannerComponent,
+    ListFeaturesComponent,
+    SubscriptionComponent,
   ],
   imports: [
     BrowserModule,

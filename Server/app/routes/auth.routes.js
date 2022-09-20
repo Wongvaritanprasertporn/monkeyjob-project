@@ -35,6 +35,8 @@ module.exports = app => {
 
   router.get("/:document/download/:name", authenticated.download);
 
+  router.post("/update_image/:document", authenticated.updateImage);
+
   router.get("/search", jobs.search);
 
   app.use("/auth", router);

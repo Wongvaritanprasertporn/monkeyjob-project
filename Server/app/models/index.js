@@ -10,6 +10,8 @@ const db = {
     users: require("./users.model.js")(mongoose),
     tokens: require("./tokens.model.js")(mongoose),
     jobs: require("./jobs.model.js")(mongoose),
+    banner: require("./banner.model.js")(mongoose),
+    urgent: require("./urgent.model.js")(mongoose),
     applications: require("./applications.model.js")(mongoose),
     conversation: require("./conversation.model.js")(mongoose),
     messages: require("./messages.model.js")(mongoose),

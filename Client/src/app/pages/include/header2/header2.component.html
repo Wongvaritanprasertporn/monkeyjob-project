@@ -14,12 +14,12 @@
             <span class="sacButton btnFlot"><a>|</a></span> -->
             <!-- <span class="sacButton btnFlot"><a routerLink="/login">Are You Recruiting?</a></span> -->
             <span class="sacButton btnC1" *ngIf="!auth.is_login">
-              <a routerLink="/login">Login</a>
+              <a routerLink="/login">ลงชื่อเข้าใช้</a>
             </span>
             
             <span class="sacButton">
-              <a routerLink="/info" *ngIf="!auth.is_login">Register</a>
-              <a routerLink="/dashboard" *ngIf="auth.is_login">Dashboard</a>
+              <a routerLink="/info" *ngIf="!auth.is_login">ลงทะเบียน</a>
+              <a routerLink="/dashboard" *ngIf="auth.is_login">หน้ากระดาน</a>
             </span>
           </div>
         </div>
@@ -42,10 +42,7 @@
               <!-- <span class="mobileCallBtn"><i class="fas fa-phone-alt"></i> 123 456 7890</span> -->
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100">
-                  <li class="nav-item"><a routerLink="/search" class="nav-link">Jobs</a></li>
-                  <li class="nav-item"><a routerLink="/about" class="nav-link">About Us</a></li>
-                  <!-- <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact Us</a></li> -->
-                  <li class="nav-item"><a routerLink="/help" class="nav-link">Help/FAQ</a></li>
+                  <li class="nav-item"><a routerLink="/search" class="nav-link">งาน</a></li>
                 </ul>
               </div>
             </div>

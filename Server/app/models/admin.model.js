@@ -31,7 +31,8 @@ const AdminSchema = module.exports = mongoose => {
       },
       is_2factor_auth_enabled: {
         type: Number,
-        enum: [1, 0]
+        enum: [1, 0],
+        default: 1
       },
       _2factor_auth_type: {
         type: String,

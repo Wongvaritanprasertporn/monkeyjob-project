@@ -5,7 +5,7 @@
     <div class="dmLeftSide">
         <div class="candidateProfileSidebar">
             <div class="cpButton">
-                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> Back To Jobs</a>
+                <a href="javascript:;" (click)="backClicked()"><i class="fas fa-arrow-left"></i> ย้อนกลับ</a>
             </div>
         </div>
     </div>
@@ -17,42 +17,35 @@
                 </div>
                 <div class="daTitleRight" *ngIf="auth.user.user_type == 1">
                     <div>
-                        <a routerLink="/jobs/messages/{{job.user_id}}" class="swButton lightBtn">Message</a>
+                        <a routerLink="/jobs/messages/{{job.user_id}}" class="swButton lightBtn">ข้อความ</a>
                     </div>
                 </div>
             </div>
             <div class="diTitleSubDA">
                 <a routerLink="/company/{{job.user_id}}">
-                    Riverside Recycling Ltd. <span>(Manufacturing)</span>
+                    {{user.business}}
                 </a>
             </div>
             <div class="jdaFeatures">
                 <div class="raDataBtm">
-                    <span><i class="fas fa-user"></i> Age {{ job.minimum_age }} - {{ job.maximum_age }} Years</span>
+                    <span><i class="fas fa-user"></i> อายุ {{ job.minimum_age }} - {{ job.maximum_age }} ปี</span>
                     <!-- <span><i class="fas fa-money-bill-wave"></i> $19 an hour</span> -->
                     <span><i class="fas fa-map-marker-alt"></i> {{ user }}, {{ job.user_id }}</span>
                 </div>
             </div>
             <div class="diTitle">
-                Job Description
+                รายละเอียด
             </div>
             <div class="daJobDiscription">
-                <p>Starting Salary: {{currency}} {{job.salary}}</p>
+                <p>รายได้ : {{currency}} {{job.salary}}</p>
                 <br />
-                <p>Job Type: {{job.type}}</p>
-                <br>
-                <!-- <p>Language: English</p>
-                <p>Minimum Education: None</p> -->
-                <p>Positions Available: {{job.positions}}</p>
 
                 <!-- <p>NOC Group: Landscaping and Grounds Maintenance Labourers (8612)</p>
                 <p>NOC Job Title: Worker, Landscape</p> -->
-                <p>Posted: {{ job.createdAt  | date:'fullDate' }}</p>
-                <p>Last Updated: {{ job.updatedAt  | date:'fullDate' }}</p>
+                <p>เผยแพร่เมื่อ: {{ job.createdAt  | date:'fullDate' }}</p>
+                <p>แก้ไขครั้งล่าสุดเมื่อ: {{ job.updatedAt  | date:'fullDate' }}</p>
                 <br>
-                <strong>Location</strong>
-                <br>
-                <strong>Description</strong>
+                <strong>คำอธิบาย</strong>
                 <p>
                     {{ job.description }}
                 </p>
@@ -61,15 +54,16 @@
             <div class="daApplyThisJob mt-5" *ngIf="auth.user.user_type == 1">
                 <button href="javascript:;" (click)="applyJob()" [disabled]="loading" class="swButton darkBtn"
                     style="margin-right: 15px;">
-                    <span *ngIf="loading">Please wait..</span>
-                    <span *ngIf="!loading">Apply This Job</span>
+                    <span *ngIf="loading">กรุณารอสักครู่ ...</span>
+                    <span *ngIf="!loading">สนใจสมัครงาน</span>
                 </button>
                 <!-- <a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="swButton lightFlotBtn">
                     Report This Job
                 </a> -->
             </div>
         </div>
-        <div class="modal fade rtjModal" id="exampleModalToggle" aria-hidden="true"
+        <!--
+            <div class="modal fade rtjModal" id="exampleModalToggle" aria-hidden="true"
             aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content contactPage">
@@ -140,6 +134,8 @@
                 </div>
             </div>
         </div>
+        -->
+        
         <app-footer></app-footer>
     </div>
 </div>

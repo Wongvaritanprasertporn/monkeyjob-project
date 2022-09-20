@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const db = require("../models");
-const Banner = db['banner'];
+const Banner = db.banner;
 
 exports.countBanner = async (req, res) => {
     try {
@@ -47,10 +47,10 @@ exports.findBanner = async (req, res) => {
         const ObjectId = mongoose.Types.ObjectId;
         const data = await Banner.aggregate([{
             $lookup: {
-                from: 'users',
+                from: 'banner',
                 localField: 'user_id',
                 foreignField: '_id',
-                as: 'users'
+                as: 'banner'
             }
         },
         {
@@ -59,49 +59,6 @@ exports.findBanner = async (req, res) => {
             }
         }
         ]).sort({ updatedAt: -1 });
-        if (!data) {
-            res.status(400).send({
-                message: `No data`
-            });
-        } else {
-            res.send(data);
-        }
-    } catch (error) {
-        res.status(500).send({
-            message: error.message
-        });
-    }
-};
-
-exports.search = async (req, res) => {
-    try {
-        var data;
-        if (req.query.title || req.query.zip_code) {
-            data = await Banner.find(
-                {
-                    $or: [
-                        {
-                            title: {
-                                $in: [req.query.title]
-                            }
-                        },
-                        {
-                            address: {
-                                $in: [req.query.zip_code]
-                            }
-                        },
-                        {
-                            zip_code: {
-                                $in: [req.query.zip_code]
-                            }
-                        }
-                    ],
-                }
-            );
-        } else {
-            data = await Banner.find({}).sort({ updatedAt: -1 });
-        }
-
         if (!data) {
             res.status(400).send({
                 message: `No data`

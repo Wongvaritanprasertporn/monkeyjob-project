@@ -1,15 +1,13 @@
-<div class="container text-center">
-    <div class="row row-cols-2">
-        <div class="col py-md-5 p">
-            <div class="row p-3 border bg-light" *ngFor="">
-                <div class="col-8">
-                    <h3></h3>
-                <p></p>
-                </div>
-                <div class="col-4">
-                    <img src="">
-                </div>
-            </div>
+<div class="container text-start">
+    <h1>Feature Jobs</h1>
+    <div class="row gy-5 justify-content-around">
+        <div class="col-5 border border-active-primary" *ngFor="let i of content">
+            <h3>{{i.title}}</h3>
+            <p>{{i.details}}</p>
+            <button class="btn btn-primary text-bg-primary">รายละเอียด</button>
         </div>
+    </div>
+    <div class="text-center" style="width:100%; padding-top: 100px" *ngIf="content == null">
+        <h3 class="text-secondary">ยังไม่มีข้อมูลขณะนี้</h3>
     </div>
 </div>

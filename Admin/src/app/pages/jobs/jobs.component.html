@@ -46,7 +46,7 @@
                                                         <th class="min-w-125px sorting" tabindex="0"
                                                             aria-controls="kt_table_users" rowspan="1" colspan="1"
                                                             aria-label="Last login: activate to sort column ascending"
-                                                            style="width: 155.844px;">Industry
+                                                            style="width: 155.844px;">User ID
                                                         </th>
                                                         <th class="min-w-125px sorting" tabindex="0"
                                                             aria-controls="kt_table_users" rowspan="1" colspan="1"
@@ -56,32 +56,40 @@
                                                         <th class="min-w-125px sorting" tabindex="0"
                                                             aria-controls="kt_table_users" rowspan="1" colspan="1"
                                                             aria-label="Joined Date: activate to sort column ascending"
-                                                            style="width: 198.969px;">Starting salary
+                                                            style="width: 198.969px;">Maximum age
                                                         </th>
-                                                        <th class="min-w-125px sorting" rowspan="1" colspan="1"
-                                                            aria-label="Actions" style="width: 125.188px;">
-                                                            Zip code
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Joined Date: activate to sort column ascending"
+                                                            style="width: 198.969px;">Salary
                                                         </th>
-                                                        <th class="min-w-125px sorting" rowspan="1" colspan="1"
-                                                            aria-label="Actions" style="width: 125.188px;">
-                                                            Action
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Joined Date: activate to sort column ascending"
+                                                            style="width: 198.969px;">City
+                                                        </th>
+                                                        <th class="min-w-125px sorting" tabindex="0"
+                                                            aria-controls="kt_table_users" rowspan="1" colspan="1"
+                                                            aria-label="Joined Date: activate to sort column ascending"
+                                                            style="width: 198.969px;">Action
                                                         </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="text-gray-600 fw-bold">
                                                     <tr class="odd" *ngFor="let job of jobs">
                                                         <td>{{job.title}}</td>
-                                                        <td>
-                                                            {{job.industry}}
-                                                        </td>
+                                                        <td>{{job.user_id}}</td>
                                                         <td>
                                                             {{job.minimum_age}}
                                                         </td>
                                                         <td>
-                                                            {{job.starting_salary}}
+                                                            {{job.maximum_age}}
                                                         </td>
                                                         <td>
-                                                            {{job.zip_code}}
+                                                            {{job.salary}}
+                                                        </td>
+                                                        <td>
+                                                            {{job.city}}
                                                         </td>
                                                         <td>
                                                             <button class="btn btn-info btn-sm"

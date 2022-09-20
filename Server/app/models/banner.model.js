@@ -11,6 +11,10 @@ const BannerSchema = module.exports = mongoose => {
         type: String,
         required: [true, 'required'],
       },
+      bound: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'required'],
+      },
       status: {
         type: Number,
         default: 1,

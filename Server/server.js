@@ -74,6 +74,8 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/authenticated.routes")(app);
 require("./app/routes/crud.routes")(app);
 require("./app/routes/jobs.routes")(app);
+require("./app/routes/banner.routes")(app);
+require("./app/routes/feature.routes")(app);
 require("./app/routes/applications.routes")(app);
 require("./app/routes/messages.routes")(app);
 

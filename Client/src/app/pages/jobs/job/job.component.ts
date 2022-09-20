@@ -16,10 +16,7 @@ export class JobComponent implements OnInit {
   applications: any = [];
   currency = environment.currency;
   user: any = {};
-  job: any = {
-    title: "",
-    _id: ""
-  };
+  job: any = {};
   constructor(
     public auth: AuthService,
     public fun: FunctionsService,
@@ -42,7 +39,8 @@ export class JobComponent implements OnInit {
         next: (response: any) => {
           this.loading = false;
           this.job = response;
-          this.getBusinessData(this.job.user_id)
+          console.log(this.job.email);
+          this.getBusinessData(this.job.email)
         }, error: (e) => {
           this.loading = false;
           this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
@@ -50,9 +48,9 @@ export class JobComponent implements OnInit {
       });
   }
 
-  getBusinessData(user_id: any) {
+  getBusinessData(email: any) {
     this.loading = true;
-    this.api.get(`crud/get_user/${user_id}/`)
+    this.api.get(`crud/get_user/${email}`)
       .subscribe({
         next: (response: any) => {
           this.loading = false;

@@ -15,6 +15,8 @@ import { UsersComponent } from './pages/users/users.component';
 import { StudentComponent } from './pages/student/student.component';
 import { UserComponent } from './pages/user/user.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
+import { BannerComponent } from './pages/banner/banner.component';
+import { FeatureJobsComponent } from './pages/feature-jobs/feature-jobs.component';
 import { JobComponent } from './pages/job/job.component';
 import { IndustriesComponent } from './pages/industries/industries.component';
 
@@ -72,6 +74,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'banner',
+    component: BannerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'feature',
+    component: FeatureJobsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'industries',
     component: IndustriesComponent,
     canActivate: [AuthGuard]
@@ -81,7 +93,6 @@ const routes: Routes = [
     component: JobComponent,
     canActivate: [AuthGuard]
   },
-  
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '/' }
 ];

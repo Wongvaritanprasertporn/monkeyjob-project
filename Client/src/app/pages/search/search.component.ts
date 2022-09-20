@@ -20,48 +20,49 @@ export class SearchComponent implements OnInit {
     private formBuilder: FormBuilder,
     public _location: Location,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       title: [''],
-      zip_code: [''],
+      city: [''],
     });
-    
-    let title = this.activatedRoute.snapshot.queryParams["title"] ? this.activatedRoute.snapshot.queryParams["title"] : "";
-    let zip_code = this.activatedRoute.snapshot.queryParams["zip_code"] ? this.activatedRoute.snapshot.queryParams["zip_code"] : "";
 
-    this.search(title, zip_code);
+    let title = this.activatedRoute.snapshot.queryParams["title"] ? this.activatedRoute.snapshot.queryParams["title"] : "";
+    let city = this.activatedRoute.snapshot.queryParams["city"] ? this.activatedRoute.snapshot.queryParams["city"] : "";
+
+    this.search(title, city);
   }
 
   submit() {
     if (this.form.dirty && this.form.valid) {
-      this.search(this.form.value.title,this.form.value.zip_code);
+      this.search(this.form.value.title, this.form.value.zip_code);
     } else {
       for (let i in this.form.controls) this.form.controls[i].markAsTouched();
     }
   }
 
-  search(title : any, zip_code : any) {
+  search(title: any, city: any) {
     this.loading = true;
     this.api
       .get_(
-        `auth/search/?title=${title}&zip_code=${zip_code}`
+        `auth/search/?title=${title}&city=${city}`
       )
-      .subscribe(
-        (response: any) => {
-          this.loading = false;
-          this.jobs = response;
-        },
-        (error) => {
+      .subscribe({
+        next:
+          (response: any) => {
+            this.loading = false;
+            this.jobs = response;
+          },
+        error: (e) => {
           this.loading = false;
           this.fun.presentAlertError(
-            error.error.message ||
-              error.error.sqlMessage ||
-              'Something went wrong. Try again.'
+            e.error.message ||
+            e.error.sqlMessage ||
+            'Something went wrong. Try again.'
           );
         }
-      );
+      });
   }
 
   backClicked() {

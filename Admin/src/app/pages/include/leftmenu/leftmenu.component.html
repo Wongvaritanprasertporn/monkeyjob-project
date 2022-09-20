@@ -18,6 +18,16 @@
 					</a>
 				</div>
 				<div class="menu-item">
+					<a [class]="route == '/banner' ? 'menu-link active' : 'menu-link'" routerLink="/banner">
+						<span class="menu-title">Manage Banner</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a [class]="route == '/feature' ? 'menu-link active' : 'menu-link'" routerLink="/feature">
+						<span class="menu-title">Manage Feature Jobs</span>
+					</a>
+				</div>
+				<div class="menu-item">
 					<a [class]="route == '/users' ? 'menu-link active' : 'menu-link'" routerLink="/users">
 						<span class="menu-title">Manage Employer</span>
 					</a>

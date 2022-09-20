@@ -52,6 +52,9 @@ const userSchema = module.exports = mongoose => {
       address: {
         type: String,
       },
+      city: {
+        type: String,
+      },
       summary: {
         type: String,
       },
@@ -63,6 +66,11 @@ const userSchema = module.exports = mongoose => {
       },
       educations: {
         type: String,
+      },
+      subscription: {
+        type: Array,
+        default: [false,false,false],
+        //[unlimited_post, banner, featured]
       },
       is_active: {
         type: Number,

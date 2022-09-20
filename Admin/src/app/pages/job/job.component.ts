@@ -29,10 +29,9 @@ export class JobComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.formBuilder.group({
             title: ['', Validators.required],
-            industry: ['', Validators.required],
             minimum_age: ['', [Validators.required, Validators.min(1)]],
-            starting_salary: ['', [Validators.required, Validators.min(1)]],
-            zip_code: ['', Validators.required],
+            maximum_age: ['', [Validators.required, Validators.min(1)]],
+            salary: ['', [Validators.required, Validators.min(1)]],
             description: ['',Validators.required]
         });
 
@@ -44,23 +43,22 @@ export class JobComponent implements OnInit {
     getJob(job_id: any) {
         this.loading = true;
         this.api.get(`crud/jobs/${job_id}`)
-            .subscribe((response: any) => {
+            .subscribe({next: (response: any) => {
                 this.loading = false;
                 this.job = response;
 
                 this.form.get('title').setValue(this.job.title);
-                this.form.get('industry').setValue(this.job.industry);
                 this.form.get('minimum_age').setValue(this.job.minimum_age);
-                this.form.get('starting_salary').setValue(this.job.starting_salary);
-                this.form.get('zip_code').setValue(this.job.zip_code);
+                this.form.get('maximum_age').setValue(this.job.maximum_age);
+                this.form.get('salary').setValue(this.job.salary);
                 this.form.get('description').setValue(this.job.description);
 
         this.form.markAsDirty();
 
-            }, error => {
+            }, error: (e) => {
                 this.loading = false;
-                this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-            });
+                this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+            }});
     }
 
     submit() {
@@ -75,12 +73,12 @@ export class JobComponent implements OnInit {
     update() {
         this.loading = true;
         this.api.put(`crud/jobs/${this.job.id}`, this.form.value)
-            .subscribe((response: any) => {
+            .subscribe({next: (response: any) => {
                 this.loading = false;
                 this.fun.presentAlert('Job has been updated.');
-            }, error => {
+            }, error: (e) => {
                 this.loading = false;
-                this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-            });
+                this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+            }});
     }
 }

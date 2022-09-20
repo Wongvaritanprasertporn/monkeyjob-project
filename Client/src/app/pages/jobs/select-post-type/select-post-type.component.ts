@@ -23,18 +23,26 @@ export class SelectPostTypeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    
   }
 
   submit() {
     if (this.post_type == 1) {
       this.router.navigateByUrl('/jobs/create');
     }
-    else if (this.post_type == 2) {
-      this.router.navigateByUrl('/jobs/banner/create');
+    else if (this.post_type == 2 ) {
+      if (this.auth.user.subscription[1]) {
+        this.router.navigateByUrl('/jobs/banner/create');
+      } else {
+        this.router.navigateByUrl("/jobs/")
+      }
     }
     else {
-      this.router.navigateByUrl('/jobs/urgent/create');
+      if (this.auth.user.subscription[2]) {
+        this.router.navigateByUrl('/jobs/urgent/create');
+      } else {
+        this.router.navigateByUrl('/jobs/')
+      }
     }
   }
 

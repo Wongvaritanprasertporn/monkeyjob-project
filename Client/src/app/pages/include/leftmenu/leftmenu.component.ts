@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./leftmenu.component.css']
 })
 export class LeftmenuComponent implements OnInit {
+  bannerRoute: any;
+  featureRoute: any;
   route: any;
   menu = false;
   menu2 = false;
@@ -27,6 +29,20 @@ export class LeftmenuComponent implements OnInit {
     ) {
       this.menu = true;
 
+    }
+
+    if (this.auth.user.subscription[1]) {
+      this.bannerRoute = "/jobs/banner/create"
+    }
+    else {
+      this.bannerRoute = "/subscription"
+    }
+
+    if (this.auth.user.subscription[2]) {
+      this.featureRoute = "/jobs/urgent/create"
+    }
+    else {
+      this.featureRoute = "/subscription"
     }
 
     switch (this.route) {

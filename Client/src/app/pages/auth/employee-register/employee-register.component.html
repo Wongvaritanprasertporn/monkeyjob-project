@@ -6,7 +6,7 @@
     <div class="row text-center">
       <div class="col-md-12">
         <div class="mainPageTitle">
-          <h1>Create your account</h1>
+          <h1>ลงทะเบียน</h1>
           <!-- <div class="loginText">
             By signing in to your account, you agree to Job Portal<br />
             <a href="javascript:;">Terms of Service</a> &amp; consent to our <a href="javascript:;">Cookie Policy</a>
@@ -24,7 +24,8 @@
       <div class="col-md-6">
         <div class="loginPagesBox">
           <div class="swTabs">
-            <div class="haveAccountOr text-center">
+            <!--
+              <div class="haveAccountOr text-center">
               <div class="row">
                 <div class="col-md-12">
                   <a href="javascript:;" (click)="signInWithGoogle()">
@@ -51,10 +52,12 @@
               <span class="haorLineText">or</span>
               <span class="haorLine"></span>
             </div>
+            -->
+
             <form class="contactPage" [formGroup]="form" (submit)="submit()">
               <div class="row">
                 <div class="col-md-3 mb-3">
-                  <app-image-uploader (imageFile)="retrieveImage($event)"></app-image-uploader>
+                  <app-image-uploader [(imageFile)]="this.logo"></app-image-uploader>
                 </div>
                 <div class="col-md-9 mb-3">
                   <label for="logUserName" class="form-label">ชื่อ - นามสกุลผู้ติดต่อ <span
@@ -154,18 +157,24 @@
                       รหัสผ่านต้องมีตัวอักขระอย่างน้อง 8 ตัว
                     </div>
                     <div>
-                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].search(regex_small_az) != -1 && form.value['password'].search(regex_cap_az) != -1"></i>
-                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].search(regex_small_az) == -1 || form.value['password'].search(regex_cap_az) == -1"></i>
+                      <i class="fa fa-solid fa-check fa-2xl correct"
+                        *ngIf="form.value['password'].search(regex_small_az) != -1 && form.value['password'].search(regex_cap_az) != -1"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error"
+                        *ngIf="form.value['password'].search(regex_small_az) == -1 || form.value['password'].search(regex_cap_az) == -1"></i>
                       รหัสผ่านต้องมีตัวอักษรตัวพิมพ์เล็กและตัวพิมพ์ใหญ่ประกอบ
                     </div>
                     <div>
-                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].search(regex_num) != -1"></i>
-                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].search(regex_num) == -1"></i>
+                      <i class="fa fa-solid fa-check fa-2xl correct"
+                        *ngIf="form.value['password'].search(regex_num) != -1"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error"
+                        *ngIf="form.value['password'].search(regex_num) == -1"></i>
                       รหัสผ่านต้องมีตัวเลขประกอบ
                     </div>
                     <div>
-                      <i class="fa fa-solid fa-check fa-2xl correct" *ngIf="form.value['password'].search(regex_char) != -1"></i>
-                      <i class="fa fa-solid fa-xmark fa-2xl error" *ngIf="form.value['password'].search(regex_char) == -1"></i>
+                      <i class="fa fa-solid fa-check fa-2xl correct"
+                        *ngIf="form.value['password'].search(regex_char) != -1"></i>
+                      <i class="fa fa-solid fa-xmark fa-2xl error"
+                        *ngIf="form.value['password'].search(regex_char) == -1"></i>
                       รหัสผ่านต้องมีสัญลักษณ์พิเศษประกอบ
                     </div>
                   </div>
@@ -199,8 +208,8 @@
                 <!-- แนะนำตนเอง -->
                 <div class="col-md-12 mb-3">
                   <label for="logIntroduce" class="form-label">บทแนะนำตนเอง <span class="error">*</span></label>
-                  <textarea class="form-control" id="logIntroduce" placeholder=""
-                    formControlName="introduce" name="introduce"></textarea>
+                  <textarea class="form-control" id="logIntroduce" placeholder="" formControlName="introduce"
+                    name="introduce"></textarea>
                   <div class="error">
                     <div *ngIf="form.controls.introduce.touched && form.controls.introduce.hasError('required')">
                       ต้องการให้แนะนำตนเอง
@@ -221,7 +230,7 @@
             </form>
             <div class="loginFormBtmSec">
               <div class="haveAccount">
-                หากท่านเป็นสมาชิกแล้ว สามารถ<a routerLink="/login">ลงชื่อเข้าใช้</a>ได้ที่นี่
+                หากท่านเป็นสมาชิกแล้ว <a routerLink="/login">ลงชื่อเข้าใช้</a> ได้เลย
               </div>
             </div>
           </div>

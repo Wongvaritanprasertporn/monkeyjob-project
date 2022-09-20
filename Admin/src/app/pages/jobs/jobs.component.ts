@@ -28,13 +28,13 @@ export class JobsComponent implements OnInit {
   getJobs() {
     this.loading = true;
     this.api.get(`crud/jobs/`)
-      .subscribe((response: any) => {
+      .subscribe({next:(response: any) => {
         this.loading = false;
         this.jobs = response;
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 
 }

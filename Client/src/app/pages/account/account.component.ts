@@ -28,9 +28,8 @@ export class AccountComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
       phone: ['', [Validators.required]],
-      summary: ['', [Validators.required]],
-      works: ['', [Validators.required]],
-      educations: ['', [Validators.required]]
+      introduce: ['', [Validators.required]],
+      record: ['', [Validators.required]],
     });
 
     if (this.auth.user.name) {
@@ -42,14 +41,11 @@ export class AccountComponent implements OnInit {
     if (this.auth.user.phone) {
       this.form.get('phone').setValue(this.auth.user.phone);
     }
+    if (this.auth.user.resume) {
+      this.form.get('introduce').setValue(this.auth.user.resume);
+    }
     if (this.auth.user.summary) {
-      this.form.get('summary').setValue(this.auth.user.summary);
-    }
-    if (this.auth.user.works) {
-      this.form.get('works').setValue(this.auth.user.works);
-    }
-    if (this.auth.user.educations) {
-      this.form.get('educations').setValue(this.auth.user.educations);
+      this.form.get('record').setValue(this.auth.user.summary);
     }
     this.form.markAsDirty();
   }
@@ -66,13 +62,13 @@ export class AccountComponent implements OnInit {
   update() {
     this.loading = true;
     this.api.put(`authenticated/users`, this.form.value)
-      .subscribe((response: any) => {
+      .subscribe({next: (response: any) => {
         this.loading = false;
         this.auth.user = response.user;
         this.fun.presentAlert('Profile has been updated.');
-      }, error => {
+      }, error: (e) => {
         this.loading = false;
-        this.fun.presentAlertError(error.error.message || error.error.sqlMessage || 'Something went wrong. Try again.');
-      });
+        this.fun.presentAlertError(e.error.message || e.error.sqlMessage || 'Something went wrong. Try again.');
+      }});
   }
 }

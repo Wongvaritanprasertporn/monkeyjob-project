@@ -35,6 +35,10 @@ import { UserComponent } from './pages/user/user.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
 import { JobComponent } from './pages/job/job.component';
 import { IndustriesComponent } from './pages/industries/industries.component';
+import { BannerComponent } from './pages/banner/banner.component';
+import { FeatureJobsComponent } from './pages/feature-jobs/feature-jobs.component';
+import { BannerDetailsComponent } from './pages/banner-details/banner-details.component';
+import { FeatureDetailsComponent } from './pages/feature-details/feature-details.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { IndustriesComponent } from './pages/industries/industries.component';
     UserComponent,
     JobsComponent,
     JobComponent,
-    IndustriesComponent
+    IndustriesComponent,
+    BannerComponent,
+    FeatureJobsComponent,
+    BannerDetailsComponent,
+    FeatureDetailsComponent
   ],
   imports: [
     BrowserModule,

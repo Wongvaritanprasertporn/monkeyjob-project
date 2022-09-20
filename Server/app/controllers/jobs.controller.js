@@ -86,15 +86,10 @@ exports.search = async (req, res) => {
                             }
                         },
                         {
-                            address: {
+                            city: {
                                 $in: [req.query.zip_code]
                             }
                         },
-                        {
-                            zip_code: {
-                                $in: [req.query.zip_code]
-                            }
-                        }
                     ],
                 }
             );

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-image-uploader',
@@ -9,7 +9,8 @@ export class ImageUploaderComponent implements OnInit {
   background: string = '';
   form: any;
 
-  @Output() imageFile = new EventEmitter<string>();
+  @Input() imageFile = '';
+  @Output() imageFileChange = new EventEmitter<string>();
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef | undefined
   @ViewChild("imageShow", {static: false}) imageShow: ElementRef | undefined
 
@@ -24,7 +25,7 @@ export class ImageUploaderComponent implements OnInit {
     const fileInput = this.fileUpload?.nativeElement
     if (fileInput) {
       this.background = URL.createObjectURL(fileInput.files[0])
-      this.imageFile.emit(fileInput.files[0])
+      this.imageFileChange.emit(fileInput.files[0])
     }
   }
 
